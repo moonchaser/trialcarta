@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<!-- Google tag (gtag.js): loaded only on the live site, so local previews aren't counted -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	if (/(^|\.)trialcarta\.com$/.test(location.hostname)) {
+		var ga = document.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-05L6VGT0W0';
+		document.head.appendChild(ga);
+		gtag('js', new Date());
+		gtag('config', 'G-05L6VGT0W0');
+	}
+</script>
+
+
+<meta charset="utf-8">
+
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<!-- SEO meta tags -->
+<title>Thanks for your request | TrialCarta</title>
+<meta name="description" content="Thanks for your TrialCarta request. We reply within one business day.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://www.trialcarta.com/thanks/">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/icon-512.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+<meta name="author" content="TrialCarta">
+
+
+<!-- Theme switcher (color modes) -->
+<script src="../assets/js/theme-switcher.js"></script>
+
+<!-- Import Google font (Inter) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+<!-- Vendor styles -->
+<link rel="stylesheet" media="screen" href="../assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" media="screen" href="../assets/vendor/aos/dist/aos.css">
+
+<!-- Font icons -->
+<link rel="stylesheet" href="../assets/icons/around-icons.min.css">
+
+<!-- Theme styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="../assets/css/theme.min.css">
+
+<!-- Page loading styles -->
+<style>
+	.page-loading {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transition: all .4s .2s ease-in-out;
+		transition: all .4s .2s ease-in-out;
+		background-color: #fff;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9999;
+	}
+	[data-bs-theme="dark"] .page-loading {
+		background-color: #121519;
+	}
+	.page-loading.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-loading-inner {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-transition: opacity .2s ease-in-out;
+		transition: opacity .2s ease-in-out;
+		opacity: 0;
+	}
+	.page-loading.active > .page-loading-inner {
+		opacity: 1;
+	}
+	.page-loading-inner > span {
+		display: block;
+		font-family: "Inter", sans-serif;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #6f788b;
+	}
+	[data-bs-theme="dark"] .page-loading-inner > span {
+		color: #fff;
+		opacity: .6;
+	}
+	.page-spinner {
+		display: inline-block;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: .75rem;
+		vertical-align: text-bottom;
+		background-color: #d7dde2; 
+		border-radius: 50%;
+		opacity: 0;
+		-webkit-animation: spinner .75s linear infinite;
+		animation: spinner .75s linear infinite;
+	}
+	[data-bs-theme="dark"] .page-spinner {
+		background-color: rgba(255,255,255,.25);
+	}
+	@-webkit-keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	@keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+</style>
+
+<style>
+	/* Anchor links land below the fixed navbar. */
+	section[id] { scroll-margin-top: 84px; }
+
+	/* Brand palette: the TrialCarta app's teal instead of the theme's default green.
+	   Filled buttons stay deep teal in both modes (white text 5.5:1); outline buttons,
+	   links and icons use bright teal in dark mode (9.8:1 on the dark background). */
+	:root, [data-bs-theme=light] {
+		--ar-primary: #0F766E;
+		--ar-primary-rgb: 15, 118, 110;
+		--ar-primary-text-emphasis: #115E59;
+		--ar-primary-bg-subtle: #E6F4F2;
+		--ar-primary-border-subtle: #C9E7E3;
+		--ar-link-color: #0F766E;
+		--ar-link-color-rgb: 15, 118, 110;
+		--ar-link-hover-color: #115E59;
+		--ar-focus-ring-color: rgba(15, 118, 110, .25);
+	}
+	[data-bs-theme=dark] {
+		--ar-primary: #2DD4BF;
+		--ar-primary-rgb: 45, 212, 191;
+		--ar-primary-text-emphasis: #5EEAD4;
+		--ar-primary-bg-subtle: #0B2421;
+		--ar-primary-border-subtle: #134E4A;
+		--ar-link-color: #2DD4BF;
+		--ar-link-color-rgb: 45, 212, 191;
+		--ar-link-hover-color: #5EEAD4;
+		--ar-focus-ring-color: rgba(45, 212, 191, .25);
+	}
+	.btn-primary {
+		--ar-btn-color: #fff; --ar-btn-bg: #0F766E; --ar-btn-border-color: #0F766E;
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #115E59; --ar-btn-hover-border-color: #115E59;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #134E4A; --ar-btn-active-border-color: #134E4A;
+		--ar-btn-disabled-bg: #0F766E; --ar-btn-disabled-border-color: #0F766E;
+		--ar-btn-focus-shadow-rgb: 15, 118, 110;
+	}
+	.btn-outline-primary {
+		--ar-btn-color: var(--ar-primary); --ar-btn-border-color: var(--ar-primary);
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #0F766E; --ar-btn-hover-border-color: #0F766E;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #115E59; --ar-btn-active-border-color: #115E59;
+		--ar-btn-focus-shadow-rgb: var(--ar-primary-rgb);
+	}
+	/* Call-to-action band: same deep teal in both modes. */
+	.cta-band { background-color: #0F766E; }
+</style>
+
+<!-- Page loading scripts -->
+<script>
+	(function () {
+		window.onload = function () {
+			const preloader = document.querySelector('.page-loading')
+			preloader.classList.remove('active')
+			setTimeout(function () {
+				preloader.remove()
+			}, 1500)
+		}
+	})()
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body class="bg-secondary">
+	<div class="page-loading active"><div class="page-loading-inner"><div class="page-spinner"></div><span>Loading...</span></div></div>
+	<main class="page-wrapper">
+		<!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+		<header class="navbar navbar-expand-lg fixed-top">
+			<div class="container">
+
+				<!-- Navbar brand (Logo) -->
+				<a class="navbar-brand pe-sm-3" href="../">
+					<img src="../assets/favicon/favicon.svg" width="30" height="30" class="me-2 rounded-2" alt="">TrialCarta
+				</a>
+
+				<!-- Theme switcher -->
+				<div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+					<input class="form-check-input" type="checkbox" id="theme-mode">
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-sun fs-lg"></i>
+					</label>
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-moon fs-lg"></i>
+					</label>
+				</div>
+
+				<a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="../#contact" data-interest="TrialCarta demo">
+					<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+					Request a demo
+				</a>
+
+				<!-- Mobile menu toggler (Hamburger) -->
+				<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar collapse (Main navigation) -->
+				<nav class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+						<li class="nav-item">
+							<a class="nav-link" href="../#how-it-works">How it works</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../#features">Features</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../#teams">For teams</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../#privacy">Privacy</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../#who">Who it's for</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../insights/mash-trial-landscape/">MASH landscape</a>
+						</li>
+					</ul>
+
+					<div class="d-sm-none p-3 mt-n3">
+						<a class="btn btn-primary w-100 mb-1" href="../#contact">
+							<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+							Request a demo
+						</a>
+					</div>
+				</nav>
+
+			</div>
+		</header>
+		<section class="container pt-5 mt-5 pb-5">
+			<div class="mx-auto text-center py-5" style="max-width: 640px;">
+				<i class="ai-circle-check display-3 text-primary"></i>
+				<h1 class="display-5 pt-3 pb-2">Thanks, your request is on its way.</h1>
+				<p class="fs-lg">We reply within one business day. If you mentioned an indication, we'll use it to show you TrialCarta on trials you care about.</p>
+				<div class="d-flex flex-column flex-sm-row justify-content-center gap-3 pt-3">
+					<a class="btn btn-lg btn-primary" href="../#features">See what TrialCarta does</a>
+					<a class="btn btn-lg btn-outline-primary" href="../insights/mash-trial-landscape/">Read the MASH trial landscape</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer pt-lg-5 pt-4 pb-5">
+		<div class="container pt-3 mt-md-2 mt-lg-3">
+			<div class="row gy-md-5 gy-4 mb-md-5 mb-4 pb-lg-2">
+				<div class="col-lg-4">
+					<a class="navbar-brand d-inline-flex align-items-center mb-lg-4 mb-3" href="../">
+						<img src="../assets/favicon/favicon.svg" width="28" height="28" class="me-2 rounded-2" alt=""><span class="text-nav">TrialCarta</span>
+					</a>
+					<p class="mb-4 pb-lg-1 fs-xs text-body-secondary" style="max-width: 320px;">Clinical trial research in minutes, checked against the source. Private: it runs on your own Mac or your team's server.</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row row-cols-sm-3 row-cols-1">
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#how-it-works">How it works</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#features">Features</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#teams">For teams</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#privacy">Privacy</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#who">Who it's for</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#contact">Request a demo</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../insights/mash-trial-landscape/">MASH trial landscape</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/pdf-redaction-check/">Check PDF redaction</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/check-memo-trial-dates/">Check a memo's trial dates</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav flex-nowrap mb-3">
+									<a class="nav-link fw-normal p-0 mt-n1" href="../#contact"><i class="ai-mail lead text-primary me-2"></i>Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav fs-sm text-body-secondary">&copy;&nbsp;<span id="spanYear"></span>&nbsp;TrialCarta. All rights reserved.</div>
+		</div>
+	</footer>
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+    	<svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    		<circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    	</svg>
+    	<i class="ai-arrow-up"></i>
+    </a>
+
+
+
+    <script src="../assets/js/theme.min.js"></script>
+    <script src="../assets/js/scroll-depth.js"></script>
+    <script>$('#spanYear').html(new Date().getFullYear());</script>
+  </body>
+  </html>
+

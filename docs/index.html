@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<!-- Google tag (gtag.js): loaded only on the live site, so local previews aren't counted -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	if (/(^|\.)trialcarta\.com$/.test(location.hostname)) {
+		var ga = document.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-05L6VGT0W0';
+		document.head.appendChild(ga);
+		gtag('js', new Date());
+		gtag('config', 'G-05L6VGT0W0');
+	}
+</script>
+
+
+<meta charset="utf-8">
+
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<!-- SEO meta tags -->
+<title>TrialCarta | Clinical trial research in minutes, checked against the source</title>
+<meta name="description" content="TrialCarta does in minutes the clinical trial research an analyst spends days on: search ClinicalTrials.gov and PubMed, see the landscape, compare protocol versions, check redaction and trace every number to its source. Private, on your own computer.">
+<meta name="keywords" content="clinical trials, ClinicalTrials.gov, PubMed, competitive intelligence, clinical operations, feasibility, readout timeline, eligibility criteria, protocol amendment comparison, schedule of assessments, redaction check, competing trials, CRA tools, site feasibility, biotech, local AI, private AI, Mac">
+<link rel="canonical" href="https://www.trialcarta.com/">
+
+<!-- Social previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trialcarta.com/">
+<meta property="og:title" content="TrialCarta: clinical trial research in minutes, checked against the source">
+<meta property="og:description" content="Search ClinicalTrials.gov and PubMed, see the landscape, and compare your own protocol, with every number traced to its source. Confidential documents stay on your computer.">
+<meta property="og:site_name" content="TrialCarta">
+<meta property="og:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TrialCarta: clinical trial research in minutes, checked against the source">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon/icon-512.png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.trialcarta.com/#org",
+      "name": "TrialCarta",
+      "url": "https://www.trialcarta.com/",
+      "logo": "https://www.trialcarta.com/assets/favicon/icon-512.png",
+      "address": { "@type": "PostalAddress", "addressLocality": "San Diego", "addressRegion": "CA", "addressCountry": "US" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "TrialCarta",
+      "url": "https://www.trialcarta.com/",
+      "applicationCategory": "BusinessApplication",
+      "applicationSubCategory": "Clinical trial research",
+      "operatingSystem": "macOS 14 or later, Apple silicon",
+      "description": "TrialCarta searches ClinicalTrials.gov and PubMed, charts the trial landscape, compares eligibility with your own protocol, and answers questions with every citation checked. For study teams it compares protocol versions, turns the schedule of assessments into a visit checklist, checks redaction and finds competing trials near a site. It runs on your own computer, so confidential documents never leave it.",
+      "image": "https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg",
+      "screenshot": "https://www.trialcarta.com/assets/img/trialcarta/protocol-offline.jpg",
+      "publisher": { "@id": "https://www.trialcarta.com/#org" }
+    }
+  ]
+}
+</script>
+<meta name="author" content="TrialCarta">
+
+
+<!-- Theme switcher (color modes) -->
+<script src="assets/js/theme-switcher.js"></script>
+
+<!-- Import Google font (Inter) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+<!-- Vendor styles -->
+<link rel="stylesheet" media="screen" href="assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" media="screen" href="assets/vendor/aos/dist/aos.css">
+
+<!-- Font icons -->
+<link rel="stylesheet" href="assets/icons/around-icons.min.css">
+
+<!-- Theme styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+
+<!-- Page loading styles -->
+<style>
+	.page-loading {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transition: all .4s .2s ease-in-out;
+		transition: all .4s .2s ease-in-out;
+		background-color: #fff;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9999;
+	}
+	[data-bs-theme="dark"] .page-loading {
+		background-color: #121519;
+	}
+	.page-loading.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-loading-inner {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-transition: opacity .2s ease-in-out;
+		transition: opacity .2s ease-in-out;
+		opacity: 0;
+	}
+	.page-loading.active > .page-loading-inner {
+		opacity: 1;
+	}
+	.page-loading-inner > span {
+		display: block;
+		font-family: "Inter", sans-serif;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #6f788b;
+	}
+	[data-bs-theme="dark"] .page-loading-inner > span {
+		color: #fff;
+		opacity: .6;
+	}
+	.page-spinner {
+		display: inline-block;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: .75rem;
+		vertical-align: text-bottom;
+		background-color: #d7dde2; 
+		border-radius: 50%;
+		opacity: 0;
+		-webkit-animation: spinner .75s linear infinite;
+		animation: spinner .75s linear infinite;
+	}
+	[data-bs-theme="dark"] .page-spinner {
+		background-color: rgba(255,255,255,.25);
+	}
+	@-webkit-keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	@keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+</style>
+
+<style>
+	/* Anchor links land below the fixed navbar. */
+	section[id] { scroll-margin-top: 84px; }
+
+	/* Brand palette: the TrialCarta app's teal instead of the theme's default green.
+	   Filled buttons stay deep teal in both modes (white text 5.5:1); outline buttons,
+	   links and icons use bright teal in dark mode (9.8:1 on the dark background). */
+	:root, [data-bs-theme=light] {
+		--ar-primary: #0F766E;
+		--ar-primary-rgb: 15, 118, 110;
+		--ar-primary-text-emphasis: #115E59;
+		--ar-primary-bg-subtle: #E6F4F2;
+		--ar-primary-border-subtle: #C9E7E3;
+		--ar-link-color: #0F766E;
+		--ar-link-color-rgb: 15, 118, 110;
+		--ar-link-hover-color: #115E59;
+		--ar-focus-ring-color: rgba(15, 118, 110, .25);
+	}
+	[data-bs-theme=dark] {
+		--ar-primary: #2DD4BF;
+		--ar-primary-rgb: 45, 212, 191;
+		--ar-primary-text-emphasis: #5EEAD4;
+		--ar-primary-bg-subtle: #0B2421;
+		--ar-primary-border-subtle: #134E4A;
+		--ar-link-color: #2DD4BF;
+		--ar-link-color-rgb: 45, 212, 191;
+		--ar-link-hover-color: #5EEAD4;
+		--ar-focus-ring-color: rgba(45, 212, 191, .25);
+	}
+	.btn-primary {
+		--ar-btn-color: #fff; --ar-btn-bg: #0F766E; --ar-btn-border-color: #0F766E;
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #115E59; --ar-btn-hover-border-color: #115E59;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #134E4A; --ar-btn-active-border-color: #134E4A;
+		--ar-btn-disabled-bg: #0F766E; --ar-btn-disabled-border-color: #0F766E;
+		--ar-btn-focus-shadow-rgb: 15, 118, 110;
+	}
+	.btn-outline-primary {
+		--ar-btn-color: var(--ar-primary); --ar-btn-border-color: var(--ar-primary);
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #0F766E; --ar-btn-hover-border-color: #0F766E;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #115E59; --ar-btn-active-border-color: #115E59;
+		--ar-btn-focus-shadow-rgb: var(--ar-primary-rgb);
+	}
+	/* Call-to-action band: same deep teal in both modes. */
+	.cta-band { background-color: #0F766E; }
+</style>
+
+<!-- Page loading scripts -->
+<script>
+	(function () {
+		window.onload = function () {
+			const preloader = document.querySelector('.page-loading')
+			preloader.classList.remove('active')
+			setTimeout(function () {
+				preloader.remove()
+			}, 1500)
+		}
+	})()
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+
+<!-- Body -->
+<body class="bg-secondary">
+
+
+	<!-- Page loading spinner -->
+	<div class="page-loading active">
+		<div class="page-loading-inner">
+			<div class="page-spinner"></div>
+			<span>Loading...</span>
+		</div>
+	</div>
+
+
+	<!-- Page wrapper -->
+	<main class="page-wrapper">
+
+		<!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+		<header class="navbar navbar-expand-lg fixed-top">
+			<div class="container">
+
+				<!-- Navbar brand (Logo) -->
+				<a class="navbar-brand pe-sm-3" href="index.html">
+					<img src="assets/favicon/favicon.svg" width="30" height="30" class="me-2 rounded-2" alt="">TrialCarta
+				</a>
+
+				<!-- Theme switcher -->
+				<div class="form-check form-switch mode-switch order-lg-2 me-3 me-lg-4 ms-auto" data-bs-toggle="mode">
+					<input class="form-check-input" type="checkbox" id="theme-mode">
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-sun fs-lg"></i>
+					</label>
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-moon fs-lg"></i>
+					</label>
+				</div>
+
+				<a class="btn btn-primary btn-sm fs-sm order-lg-3 d-none d-sm-inline-flex" href="#contact" data-interest="TrialCarta demo">
+					<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+					Request a demo
+				</a>
+
+				<!-- Mobile menu toggler (Hamburger) -->
+				<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar collapse (Main navigation) -->
+				<nav class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+						<li class="nav-item">
+							<a class="nav-link" href="#how-it-works">How it works</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#features">Features</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#teams">For teams</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="finance/">For finance</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#privacy">Privacy</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#who">Who it's for</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="insights/mash-trial-landscape/">MASH landscape</a>
+						</li>
+					</ul>
+
+					<div class="d-sm-none p-3 mt-n3">
+						<a class="btn btn-primary w-100 mb-1" href="#contact">
+							<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+							Request a demo
+						</a>
+					</div>
+				</nav>
+
+			</div>
+		</header>
+
+
+		<!-- Hero -->
+		<section class="overflow-hidden" id="hero">
+			<div class="container pt-2 pt-sm-4 pb-sm-2 pb-md-4 py-xl-5 mt-5">
+				<div class="row align-items-center py-5 mt-md-2 my-lg-3 my-xl-4">
+					<div class="col-lg-5 mb-5 mb-lg-0">
+						<div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-2 mb-3">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary">TrialCarta · private beta</span>
+							<a class="badge fs-sm bg-primary text-white text-decoration-none" href="finance/">New: TrialCarta Pro for biotech finance <i class="ai-arrow-right ms-1"></i></a>
+						</div>
+						<h1 class="display-4 text-center text-lg-start pb-sm-2 pb-md-3">Clinical trial research in minutes, checked against the source.</h1>
+						<p class="fs-lg text-center text-lg-start pb-xl-2 mx-auto mx-lg-0 mb-4" style="max-width: 480px;">The trial research an analyst spends days on: search ClinicalTrials.gov and PubMed, see the landscape at a glance, and compare it with your own protocol. Every number traces back to a registry record or paper, and it all runs privately on your own computer.</p>
+						<div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
+							<a class="btn btn-lg btn-primary" href="#contact" data-interest="TrialCarta demo">
+								<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+								Request a demo
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-7">
+						<img class="d-block w-100 rounded-4 shadow-lg" src="assets/img/trialcarta/search-timeline.jpg" alt="TrialCarta search for nonalcoholic steatohepatitis trials, with a readout timeline of ongoing trials by primary completion date">
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- How it works -->
+		<section class="container py-5" id="how-it-works">
+			<h2 class="h1 text-center pb-2">From search to answer in minutes</h2>
+			<p class="fs-lg text-center pb-4 mb-3 mx-auto" style="max-width: 640px;">Pull the trials, count them, read the records and write it up, with every source attached.</p>
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-3">Step 01</span>
+							<h3 class="h4">Search</h3>
+							<p class="mb-0">Query ClinicalTrials.gov and PubMed, separately or together, by condition, drug, sponsor, phase, status, country and dates. Trials are linked to the papers that report them.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-3">Step 02</span>
+							<h3 class="h4">See the landscape</h3>
+							<p class="mb-0">Exact charts of phases, statuses and sponsors, a readout timeline of upcoming primary completions, and a breakdown of why trials stopped. Download any chart for your slides.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-3">Step 03</span>
+							<h3 class="h4">Ask</h3>
+							<p class="mb-0">Summarize the landscape, compare trials side by side, or ask your own questions. Answers come from a model running on your computer and cite every trial and paper they use.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Demo video -->
+		<section class="container pb-5" id="demo">
+			<h2 class="h1 text-center pb-2">See it run</h2>
+			<p class="fs-lg text-center pb-4 mb-2 mx-auto" style="max-width: 640px;">A real session, sped up: search, compare three trials, switch the internet off, attach a confidential protocol, and save the answer as a PDF.</p>
+			<div class="mx-auto" style="max-width: 960px;">
+				<video class="d-block w-100 rounded-4 shadow-lg" controls playsinline preload="none" poster="assets/img/trialcarta/demo-poster.jpg">
+					<source src="assets/video/trialcarta-demo.mp4" type="video/mp4">
+				</video>
+			</div>
+		</section>
+
+		<!-- Features -->
+		<section class="container py-5" id="features">
+			<h2 class="h1 text-center pb-4 mb-2">Built for answers you can defend</h2>
+
+			<!-- Confidential protocol, offline -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6 order-lg-2">
+					<img class="d-block w-100 rounded-4 shadow" src="assets/img/trialcarta/protocol-offline.jpg" alt="TrialCarta with Internet Access off, comparing a confidential protocol's eligibility criteria with three competing phase 3 trials">
+				</div>
+				<div class="col-lg-6 order-lg-1">
+					<h3 class="h2">Your protocol against the competition, offline</h3>
+					<p class="fs-lg">Attach a draft protocol, switch the internet off, and compare its eligibility criteria with the competing trials recruiting the same patients. The analysis runs on your computer, so the protocol never goes anywhere.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>See which of your criteria narrow the patient pool the most</li>
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Works the same with data-room documents and client briefs</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Verified references -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6">
+					<img class="d-block w-100 rounded-4 shadow" src="assets/img/trialcarta/chat-references.jpg" alt="A TrialCarta answer with its references panel: one trial verified, and a trial ID that is not in the sources flagged in orange">
+				</div>
+				<div class="col-lg-6">
+					<h3 class="h2">Every citation checked</h3>
+					<p class="fs-lg">TrialCarta checks every NCT ID, PMID and file name in an answer against the records you retrieved, and flags anything it can't find. Click any ID to see the record the model read.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Numbers that the cited records don't contain are listed to double-check</li>
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Background knowledge is labeled as such, not dressed up as a source</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Evidence, not predictions -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6 order-lg-2">
+					<img class="d-block w-100 rounded-4 shadow" src="assets/img/trialcarta/readout-check.jpg" alt="TrialCarta readout check: completed phase 2 MASH trials took a median of 21 months from start to primary completion, with overdue competitor readouts flagged">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Trial names hidden for this page; in the app, each row links to its record.</p>
+				</div>
+				<div class="col-lg-6 order-lg-1">
+					<h3 class="h2">Evidence, not predictions</h3>
+					<p class="fs-lg">TrialCarta doesn't guess how a trial will turn out. It shows how comparable trials actually played out, with the trials behind every number.</p>
+					<p class="mb-0">For example: completed phase 2 MASH trials took a median of 21 months from start to primary completion, and six competitor readouts have passed their registered date without an update.</p>
+				</div>
+			</div>
+
+			<!-- Readout timeline -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6">
+					<img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 480px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/readout-timeline.jpg" alt="Readout timeline exported from TrialCarta: ongoing MASH trials as bars from start to primary completion, colored by phase, with a line for today">
+				</div>
+				<div class="col-lg-6">
+					<h3 class="h2">Know what reads out when</h3>
+					<p class="fs-lg">A timeline of ongoing trials from start to primary completion, colored by phase. Copy it straight into a deck.</p>
+					<p class="mb-0">Saved searches show what changed since your last look: new trials, status changes, moved readout dates, reworded endpoints and new results.</p>
+				</div>
+			</div>
+
+			<!-- Why trials stopped -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6 order-lg-2">
+					<img class="d-block w-100 rounded-4 shadow bg-white" src="assets/img/trialcarta/why-stopped.jpg" alt="TrialCarta chart of why trials stopped, grouped by the reason sponsors registered">
+				</div>
+				<div class="col-lg-6 order-lg-1">
+					<h3 class="h2">See why trials stopped</h3>
+					<p class="fs-lg">TrialCarta groups the terminated, withdrawn and suspended trials in any search by the reason each sponsor registered: enrollment, efficacy, safety, business, funding and more.</p>
+					<p class="mb-0">Every chart is counted from the records, never estimated by AI, and the write-up quotes each sponsor's own words.</p>
+				</div>
+			</div>
+
+			<!-- Brief -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6">
+					<img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 560px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/brief.jpg" alt="A one-page TrialCarta landscape brief: trial counts, phases, top sponsors, next readouts and why trials stopped">
+				</div>
+				<div class="col-lg-6">
+					<h3 class="h2">A one-page brief to share</h3>
+					<p class="fs-lg">Export the landscape as a one-page PDF: counts, phases, sponsors, next readouts and why trials stopped. It has no AI-written text, so it's safe to send outside the team.</p>
+					<p class="mb-0">Answers save as PDFs too, labeled as AI-written, with their citation check.</p>
+				</div>
+			</div>
+
+			<!-- Protocol vs registry -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6 order-lg-2">
+					<img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 560px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/protocol-check.jpg" alt="TrialCarta checking a fictional protocol against its registry record: endpoint time frames, sample size, phase and arms that differ, each cited">
+					<img class="d-block w-100 rounded-4 shadow bg-white mt-4" src="assets/img/trialcarta/change-alert.jpg" alt="A saved-search alert in TrialCarta: a trial's registered primary endpoint changed from Week 52 to Week 48 and its enrollment from 210 to 180">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Example with a fictional sponsor, drug and registry record (Northwind Bio, NWB-204).</p>
+				</div>
+				<div class="col-lg-6 order-lg-1">
+					<h3 class="h2">Check a protocol against its registration</h3>
+					<p class="fs-lg">Attach a trial's protocol and TrialCarta lines up its endpoints, sample size, arms and phase with the ClinicalTrials.gov registration, listing every difference with both sources cited.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Diligence on a target's protocol from the data room, offline</li>
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Check your own registration before it goes public</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Results reporting -->
+			<div class="row align-items-center g-4 g-lg-5 pb-5 mb-lg-3">
+				<div class="col-lg-6">
+					<img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 560px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/results-check.jpg" alt="TrialCarta results reporting for MASH trials: 144 had results due, 105 posted, 5 with a delay requested and 11 FDA-regulated trials with nothing posted">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Trial names hidden for this page; in the app, each row links to its record.</p>
+				</div>
+				<div class="col-lg-6">
+					<h3 class="h2">Did they post their results?</h3>
+					<p class="fs-lg">FDAAA 801 expects results within a year of primary completion. TrialCarta checks every finished trial in a search: posted, in review, delay requested, or nothing at all.</p>
+					<p class="mb-0">For example: of 144 MASH trials whose results were due, 105 have posted them and 11 FDA-regulated trials show nothing, some for years. These are flags to review, computed from registry fields, not legal findings.</p>
+				</div>
+			</div>
+
+			<!-- For study teams and sites -->
+			<div class="pt-lg-3 pb-5 mb-lg-3" id="study-teams">
+				<div class="text-center mx-auto pb-4" style="max-width: 720px;">
+					<h3 class="h2">For study teams and sites</h3>
+					<p class="fs-lg mb-0">The document work that eats a CRA's or coordinator's week. Done by rules, not AI, and the files never leave your computer.</p>
+				</div>
+				<div class="row row-cols-1 row-cols-md-2 g-4">
+					<div class="col">
+						<div class="card border-0 h-100 rounded-5">
+							<div class="card-body">
+								<i class="ai-layout-column fs-1 text-primary d-block mb-3"></i>
+								<h4 class="h5">Compare protocol versions</h4>
+								<p class="mb-3">Drop in two versions of a protocol and see every change to eligibility, dosing, visits, safety reporting and sample size, with the section and page on both sides. It compares the full text, so it also catches changes the summary of changes doesn't mention.</p>
+								<a href="assets/img/trialcarta/version-compare.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 300px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/version-compare.jpg" loading="lazy" alt="TrialCarta comparing version 3 and version 4 of a fictional protocol: eligibility, dosing, schedule, safety reporting and sample size changes, each with its section and pages"></a>
+								<p class="fs-xs text-body-secondary mt-2 mb-0">Example with a fictional protocol. Click to enlarge.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-0 h-100 rounded-5">
+							<div class="card-body">
+								<i class="ai-hide fs-1 text-primary d-block mb-3"></i>
+								<h4 class="h5">Check redaction before you send</h4>
+								<p class="mb-3">Catches names, MRNs and dates of birth that are still readable: missed entirely, under a black box drawn over live text, struck through, legible in a scan, or sitting in a spreadsheet column. The report masks every value it finds.</p>
+								<a href="assets/img/trialcarta/redaction-check.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 300px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/redaction-check.jpg" loading="lazy" alt="TrialCarta's redaction report on fake test documents: black boxes over live text, struck-through identifiers and readable scans, with every value masked"></a>
+								<p class="fs-xs text-body-secondary mt-2 mb-0">Example with made-up test documents. Click to enlarge.</p>
+								<a class="d-inline-block fs-sm mt-2" href="guides/pdf-redaction-check/">How to check that a PDF is really redacted</a>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-0 h-100 rounded-5">
+							<div class="card-body">
+								<i class="ai-clipboard fs-1 text-primary d-block mb-3"></i>
+								<h4 class="h5">Schedule of assessments, as a checklist</h4>
+								<p class="mb-3">TrialCarta rebuilds the schedule of assessments table from the protocol PDF, including sideways pages and clear scans, and turns it into a per-visit checklist with footnotes kept. Save it as CSV for your visit tracker.</p>
+								<a href="assets/img/trialcarta/schedule-checklist.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 300px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/schedule-checklist.jpg" loading="lazy" alt="A per-visit checklist TrialCarta built from a protocol's schedule of assessments: efficacy, safety and treatment procedures for each visit, with footnote references"></a>
+								<p class="fs-xs text-body-secondary mt-2 mb-0">Click to enlarge.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col">
+						<div class="card border-0 h-100 rounded-5">
+							<div class="card-body">
+								<i class="ai-map-pin fs-1 text-primary d-block mb-3"></i>
+								<h4 class="h5">Competing trials near a site</h4>
+								<p class="mb-3">Pick one of a trial's sites and a distance. TrialCarta lists the open trials for the same conditions nearby, same facility first, with sponsor, phase, ages, target enrollment and readout date.</p>
+								<a href="assets/img/trialcarta/competing-trials.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 300px; object-fit: cover; object-position: top;" src="assets/img/trialcarta/competing-trials.jpg" loading="lazy" alt="TrialCarta listing open MASH trials near a site in Los Angeles, with sponsor, phase, nearest site and distance, ages, enrollment and readout date"></a>
+								<p class="fs-xs text-body-secondary mt-2 mb-0">From ClinicalTrials.gov records. Click to enlarge.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- More features -->
+			<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 pt-2">
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-checks fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Compare eligibility</h3>
+							<p class="mb-0">Age, stage, labs, prior treatments and exclusions across trials, and against your own protocol.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-user fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Patient pre-screen <span class="badge align-middle ms-1" style="background:#fdecc8;color:#8a5300;font-size:.75rem;">Preview</span></h3>
+							<p class="mb-3">Check a de-identified patient summary against selected trials, criterion by criterion. Screening support; a qualified person confirms eligibility.</p>
+							<a href="assets/img/trialcarta/patient-check.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" src="assets/img/trialcarta/patient-check.jpg" loading="lazy" alt="A TrialCarta patient pre-screen for a fictional patient: each eligibility criterion of a MASH trial with the patient evidence quoted and a status of Passes or Not enough information"></a>
+							<p class="fs-xs text-body-secondary mt-2 mb-0">Example with a fictional patient. Click to enlarge.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-layout-column fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Side-by-side comparisons</h3>
+							<p class="mb-0">Up to six trials in one table, with the differences that matter.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-file-text fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Your documents, always current</h3>
+							<p class="mb-0">Attach files, or link a folder and TrialCarta reads new and changed files before every question: PDFs, scans, Word, CSV and text.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-copy fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Ready for your report</h3>
+							<p class="mb-0">Paste into Word or email with tables intact, save as PDF, or export to CSV.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-folder fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Projects that remember</h3>
+							<p class="mb-0">Each project keeps its searches, documents and chats, so you pick up where you left off.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card border-0 rounded-5 mt-4">
+				<div class="card-body d-md-flex align-items-center gap-4">
+					<i class="ai-settings fs-1 text-primary d-block mb-3 mb-md-0"></i>
+					<div class="flex-grow-1">
+						<h3 class="h5">Bring your own data</h3>
+						<p class="mb-md-0">TrialCarta already reads your documents alongside the public sources. For teams, we offer a fixed-scope setup that connects your internal sources (shared drives, protocol libraries, competitive-intelligence notes, and licensed databases you already subscribe to, where your license allows) and builds watchlists for your pipeline. It's set up on your machines, and your data stays there.</p>
+					</div>
+					<a class="btn btn-outline-primary flex-shrink-0" href="#contact" data-interest="Connecting our own data">Ask about a setup</a>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- For teams -->
+		<section class="container py-5" id="teams">
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-5">
+					<h2 class="h1">For teams: one Mac, everyone's browser.</h2>
+					<p class="fs-lg">Install TrialCarta on one Mac and turn on Share with my team. Colleagues on Windows, Mac or Linux sign in from Chrome, Edge, Safari or Firefox, with nothing to install on their computers.</p>
+					<ul class="list-unstyled mb-4">
+						<li class="d-flex pb-3"><i class="ai-user-group text-primary fs-3 me-3"></i><span><strong>Accounts by invitation.</strong> An administrator invites each person and they set their own password. Chats are private to whoever asked.</span></li>
+						<li class="d-flex pb-3"><i class="ai-folder text-primary fs-3 me-3"></i><span><strong>Shared projects.</strong> One per study or client, with its documents and saved searches, open to the people you choose.</span></li>
+						<li class="d-flex pb-3"><i class="ai-wifi-off text-primary fs-3 me-3"></i><span><strong>Internet searches under your control.</strong> Turn ClinicalTrials.gov and PubMed searches off for the whole team, or just for a confidential project.</span></li>
+						<li class="d-flex pb-3"><i class="ai-server text-primary fs-3 me-3"></i><span><strong>Everything stays on that Mac.</strong> Documents, questions and answers never leave it, and the AI model runs there for everyone.</span></li>
+						<li class="d-flex"><i class="ai-user-check text-primary fs-3 me-3"></i><span><strong>Priced per person.</strong> A yearly license for the number of people on your team.</span></li>
+					</ul>
+					<a class="btn btn-primary" href="#contact" data-interest="A team server">Ask about a team setup</a>
+				</div>
+				<div class="col-lg-7">
+					<img class="d-block w-100 rounded-4 shadow" src="assets/img/trialcarta/team-sharing.jpg" loading="lazy" alt="TrialCarta's Team screen: Share with my team turned on, the addresses colleagues open in their browser, the model they share, and Administration">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">The Team screen in TrialCarta, with example addresses.</p>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- For biotech finance -->
+		<section class="container py-5" id="finance">
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-5">
+					<h2 class="h1">For biotech finance: who needs capital before the readout.</h2>
+					<p class="fs-lg">TrialCarta Pro reads ClinicalTrials.gov, SEC EDGAR and PubMed together and ranks drug developers with a readout coming, listed and private, so royalty, credit and BD teams see the next deals early.</p>
+					<ul class="list-unstyled mb-4">
+						<li class="d-flex pb-3"><i class="ai-chart text-primary fs-3 me-3"></i><span><strong>Financing Screen.</strong> A ranked list of drug developers with readout timing, cash and runway, and whether the cash lasts to the readout. Analytics, CSV and a PDF brochure.</span></li>
+						<li class="d-flex pb-3"><i class="ai-briefcase text-primary fs-3 me-3"></i><span><strong>Private companies too.</strong> What SEC filings say about how privately held sponsors are funded.</span></li>
+						<li class="d-flex pb-3"><i class="ai-target text-primary fs-3 me-3"></i><span><strong>New companies.</strong> Sponsors whose first trials were just posted, how they're funded and what's published on the drug. Keep the ones you like on your radar.</span></li>
+						<li class="d-flex pb-3"><i class="ai-bell text-primary fs-3 me-3"></i><span><strong>Alerts.</strong> Weekly re-checks that flag new raises, readouts that moved, trials stopped or completed, results posted and royalty deals signed.</span></li>
+						<li class="d-flex pb-3"><i class="ai-calendar-check text-primary fs-3 me-3"></i><span><strong>Catalyst calendar.</strong> Readouts, FDA decision dates quoted from SEC filings, and when Orange Book exclusivity and patents end, by month and ready for your calendar. <a href="finance/#dates">See it</a>.</span></li>
+						<li class="d-flex pb-3"><i class="ai-file-text text-primary fs-3 me-3"></i><span><strong>Deal terms from filings.</strong> Licensing, royalty and financing agreements on EDGAR, with the upfront, milestone and royalty terms quoted from the filing.</span></li>
+						<li class="d-flex pb-3"><i class="ai-check text-primary fs-3 me-3"></i><span><strong>Is your memo still right?</strong> Check a diligence memo or forecast against the registry and SEC filings: each readout date, enrollment, endpoint and FDA date marked Changed or Holds, with the source. <a href="finance/#memo-check">See it</a>.</span></li>
+						<li class="d-flex"><i class="ai-lock-closed text-primary fs-3 me-3"></i><span><strong>Briefs on your Mac.</strong> Ask for a brief on any company: every figure cites its filing or trial record, and your questions never leave the building.</span></li>
+					</ul>
+					<p class="fs-sm text-body-secondary">Tested on history: run as of mid-2021 and early 2023, the ranking put two to three times more of the companies that went on to sell a royalty in its top ten than a random pick would. Public data; a screening aid, not investment advice.</p>
+					<div class="d-flex flex-wrap gap-3">
+						<a class="btn btn-primary" href="finance/">See TrialCarta Pro</a>
+						<a class="btn btn-outline-primary" href="#contact" data-interest="TrialCarta Pro for biotech finance">Ask for a demo</a>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<img class="d-block w-100 rounded-4 shadow" src="assets/img/trialcarta/financing-screen.jpg" loading="lazy" alt="TrialCarta's Financing Screen analytics: companies ranked, how many run out of cash before their lead readout, median runway, a scatter of runway against months to readout, cash at the readout, and lead readouts by quarter">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Financing Screen analytics from a live run on public data, company names left out.</p>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Privacy -->
+		<section class="bg-dark py-5 my-4" data-bs-theme="dark" id="privacy">
+			<div class="container py-lg-4">
+				<div class="row align-items-center g-4 g-lg-5">
+					<div class="col-lg-5">
+						<h2 class="display-5 text-white">Confidential work stays on your computer.</h2>
+						<p class="fs-lg text-body">TrialCarta runs on your own computer, not a website. The AI runs there too, so a protocol, a data-room document or a client brief is never uploaded anywhere.</p>
+					</div>
+					<div class="col-lg-6 offset-lg-1">
+						<ul class="list-unstyled mb-0">
+							<li class="d-flex pb-3"><i class="ai-lock-closed text-primary fs-3 me-3"></i><span><strong class="text-white">One switch blocks the internet.</strong> Turn Internet Access off and the app and its helpers can't reach the network at all, enforced by a macOS sandbox, not a promise.</span></li>
+							<li class="d-flex pb-3"><i class="ai-chip text-primary fs-3 me-3"></i><span><strong class="text-white">Open models, running locally.</strong> No cloud AI service sees your questions or your files. Internet is used only to search public registries and to download models.</span></li>
+							<li class="d-flex pb-3"><i class="ai-dollar text-primary fs-3 me-3"></i><span><strong class="text-white">No usage limits or per-query costs.</strong> Nothing is metered, and there's no cloud AI vendor to approve.</span></li>
+							<li class="d-flex pb-3"><i class="ai-user text-primary fs-3 me-3"></i><span><strong class="text-white">No cloud account, no tracking.</strong> Your projects and chats are files on your computer, and deleting a project deletes its data. Team accounts live only on your own Mac.</span></li>
+							<li class="d-flex pb-3"><i class="ai-monitor text-primary fs-3 me-3"></i><span><strong class="text-white">Runs on Apple silicon Macs today.</strong> Works with 16 GB of memory; with 32 GB it uses a larger model for the best answers.</span></li>
+							<li class="d-flex"><i class="ai-server text-primary fs-3 me-3"></i><span><strong class="text-white">For a team, one Mac serves everyone.</strong> Colleagues use it from their browser on Windows, Mac or Linux, and documents never leave your network. <a href="#teams">How it works for teams</a>.</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Who it's for -->
+		<section class="container py-5" id="who">
+			<h2 class="h1 text-center pb-4 mb-2">Who it's for</h2>
+			<div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 g-4">
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<h3 class="h4">CRAs, coordinators and sites</h3>
+							<p class="mb-0">See what changed between protocol versions, turn the schedule of assessments into a visit checklist, check redaction before documents go out, and know which trials nearby recruit the same patients.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<h3 class="h4">Clinical operations and feasibility</h3>
+							<p class="mb-0">Size up competing trials, compare eligibility against your draft protocol, and learn from trials in your indication that stopped for slow enrollment.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<h3 class="h4">Competitive intelligence</h3>
+							<p class="mb-0">Track who's ahead in each indication, what reads out next, and what changed this week, with every claim traceable to a registry record or paper.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<h3 class="h4">BD, investors and diligence</h3>
+							<p class="mb-0">Assess an asset's landscape and risks quickly, find companies that may need capital before their readout, and work with confidential deal documents without sending them to a cloud service. <a href="finance/">TrialCarta Pro</a>.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="text-center text-body-secondary fs-sm pt-4 mb-0">TrialCarta supports research. It is not medical advice.</p>
+		</section>
+
+
+
+
+		<!-- CTA -->
+		<section class="cta-band py-5" data-bs-theme="dark" id="contact">
+			<div class="container py-lg-4">
+				<div class="row align-items-center g-4 g-lg-5">
+					<div class="col-lg-5">
+						<h2 class="display-4">See TrialCarta on your own indication.</h2>
+						<p class="text-white fs-xl mb-0">We're based in San Diego. Tell us the indication you care about and we'll show you TrialCarta working on it.</p>
+					</div>
+					<div class="col-lg-7 col-xl-6 offset-xl-1">
+						<div class="card border-0 rounded-5 shadow-lg" data-bs-theme="light">
+							<div class="card-body p-4 p-sm-5">
+								<form id="contact-form" action="https://formspree.io/f/mdeearga" method="POST">
+									<input type="hidden" name="_subject" value="TrialCarta request from trialcarta.com">
+									<input type="hidden" name="came_from" id="cf-from" value="">
+									<!-- Honeypot: hidden from people, filled in by bots; Formspree drops those. -->
+									<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden;">
+									<div class="row g-3">
+										<div class="col-sm-6">
+											<label class="form-label fs-sm" for="cf-name">Name</label>
+											<input class="form-control" type="text" id="cf-name" name="name" autocomplete="name" required>
+										</div>
+										<div class="col-sm-6">
+											<label class="form-label fs-sm" for="cf-email">Work email</label>
+											<input class="form-control" type="email" id="cf-email" name="email" autocomplete="email" required>
+										</div>
+										<div class="col-12">
+											<label class="form-label fs-sm" for="cf-company">Company</label>
+											<input class="form-control" type="text" id="cf-company" name="company" autocomplete="organization">
+										</div>
+										<div class="col-12">
+											<label class="form-label fs-sm" for="cf-interest">I'm interested in</label>
+											<select class="form-select" id="cf-interest" name="interest">
+												<option value="TrialCarta demo">A TrialCarta demo</option>
+												<option value="TrialCarta for study teams and sites">Tools for my study team or site</option>
+												<option value="A team server">TrialCarta for my team (Windows, Mac or Linux browsers)</option>
+												<option value="TrialCarta Pro for biotech finance">TrialCarta Pro for biotech finance</option>
+												<option value="A sample financing brochure">A sample financing brochure</option>
+												<option value="A Windows version">A Windows version</option>
+												<option value="Connecting our own data">Connecting our own data</option>
+												<option value="A custom solution">A custom solution for my team</option>
+												<option value="Something else">Something else</option>
+											</select>
+										</div>
+										<div class="col-12">
+											<label class="form-label fs-sm" for="cf-message">Indication or question</label>
+											<textarea class="form-control" id="cf-message" name="message" rows="3" placeholder="e.g. MASH, phase 2/3 competitive landscape"></textarea>
+										</div>
+										<div class="col-12 d-flex flex-column flex-sm-row align-items-sm-center gap-3">
+											<button class="btn btn-lg btn-primary" type="submit">Send request</button>
+											<span class="fs-sm text-body-secondary">We reply within one business day.</span>
+										</div>
+									</div>
+									<div class="alert alert-success mt-4 mb-0 d-none" id="cf-thanks" role="status">Thanks! Your request is on its way. We'll get back to you within one business day.</div>
+									<div class="alert alert-danger mt-4 mb-0 d-none" id="cf-error" role="alert">Sorry, that didn't go through. Please try again in a moment.</div>
+								</form>
+								<!-- The address is put together by the script below, so it never sits in the HTML for scrapers. -->
+								<p class="fs-sm text-body-secondary border-top pt-3 mt-4 mb-0">
+									Prefer email? Write to <a class="js-email" data-user="info" data-domain="trialcarta.com" href="#contact">our team</a>.
+									<noscript>(info at trialcarta dot com)</noscript>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	</main>
+
+
+	<!-- Footer -->
+	<footer class="footer pt-lg-5 pt-4 pb-5">
+		<div class="container pt-3 mt-md-2 mt-lg-3">
+			<div class="row gy-md-5 gy-4 mb-md-5 mb-4 pb-lg-2">
+				<div class="col-lg-4">
+					<a class="navbar-brand d-inline-flex align-items-center mb-lg-4 mb-3" href="index.html">
+						<img src="assets/favicon/favicon.svg" width="28" height="28" class="me-2 rounded-2" alt=""><span class="text-nav">TrialCarta</span>
+					</a>
+					<p class="mb-4 pb-lg-1 fs-xs text-body-secondary" style="max-width: 320px;">Clinical trial research in minutes, checked against the source. Private: it runs on your own Mac or your team's server.</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row row-cols-sm-3 row-cols-1">
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="#how-it-works">How it works</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="#features">Features</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="#teams">For teams</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="finance/">For biotech finance</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="#privacy">Privacy</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="#who">Who it's for</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="#contact">Request a demo</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="insights/mash-trial-landscape/">MASH trial landscape</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="guides/pdf-redaction-check/">Check PDF redaction</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="guides/check-memo-trial-dates/">Check a memo's trial dates</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav flex-nowrap mb-3">
+									<a class="nav-link fw-normal p-0 mt-n1" href="#contact"><i class="ai-mail lead text-primary me-2"></i>Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav fs-sm text-body-secondary">&copy;&nbsp;<span id="spanYear"></span>&nbsp;TrialCarta. All rights reserved.</div>
+		</div>
+	</footer>
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+    	<svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    		<circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    	</svg>
+    	<i class="ai-arrow-up"></i>
+    </a>
+
+
+    <!-- Vendor scripts: JS libraries and plugins -->
+    <script src="assets/vendor/parallax-js/dist/parallax.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/aos/dist/aos.js"></script>
+
+    <!-- Bootstrap + Theme scripts -->
+    <script src="assets/js/theme.min.js"></script>
+    <script src="assets/js/scroll-depth.js"></script>
+    <script>
+    	$('#spanYear').html(new Date().getFullYear());
+
+    	// Email links: assembled here so scrapers reading the raw HTML don't find the address.
+    	document.querySelectorAll('.js-email').forEach(function (link) {
+    		var address = link.dataset.user + '@' + link.dataset.domain;
+    		link.href = 'mailto:' + address + '?subject=' + encodeURIComponent('TrialCarta inquiry');
+    		link.textContent = address;
+    	});
+
+    	// Buttons that lead to the contact form preselect what they were about.
+    	document.querySelectorAll('a[data-interest]').forEach(function (link) {
+    		link.addEventListener('click', function () {
+    			document.getElementById('cf-interest').value = link.dataset.interest;
+    		});
+    	});
+
+    	// Links from other pages (e.g. a landscape page) carry ?interest=...&from=...: preselect
+    	// the interest and note the page in the submission.
+    	(function () {
+    		var params = new URLSearchParams(location.search), select = document.getElementById('cf-interest');
+    		var interest = params.get('interest');
+    		if (interest && [].some.call(select.options, function (o) { return o.value === interest; })) select.value = interest;
+    		if (params.get('from')) document.getElementById('cf-from').value = params.get('from');
+    	})();
+
+    	// Send through Formspree, then go to /thanks/ (the Google Ads conversion page); without
+    	// JavaScript the form still posts normally and Formspree shows its own thank-you page.
+    	document.getElementById('contact-form').addEventListener('submit', function (event) {
+    		event.preventDefault();
+    		var form = event.target, button = form.querySelector('button[type=submit]');
+    		var thanks = document.getElementById('cf-thanks'), error = document.getElementById('cf-error');
+    		button.disabled = true;
+    		error.classList.add('d-none');
+    		fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+    			.then(function (response) {
+    				if (!response.ok) throw new Error('Formspree ' + response.status);
+    				form.querySelectorAll('.row').forEach(function (row) { row.classList.add('d-none'); });
+    				thanks.classList.remove('d-none');
+    				// A request counts as a lead in Google Analytics. Leave for the
+    				// thanks page once the event is sent, or after a second if Analytics isn't loaded.
+    				var go = function () { if (!go.done) { go.done = true; location.href = 'thanks/'; } };
+    				gtag('event', 'generate_lead', { lead_interest: form.elements.interest.value, event_callback: go });
+    				setTimeout(go, 1000);
+    			})
+    			.catch(function () {
+    				error.classList.remove('d-none');
+    				button.disabled = false;
+    			});
+    	});
+
+    	// Analytics events (sent only on the live site; see the Google tag at the top).
+    	// Buttons and links to the contact form, with what they were about and where they sit.
+    	document.querySelectorAll('a[href="#contact"]').forEach(function (link) {
+    		link.addEventListener('click', function () {
+    			var place = link.closest('header, footer, section');
+    			gtag('event', 'contact_click', {
+    				interest: link.dataset.interest || '',
+    				link_text: link.textContent.trim().slice(0, 60),
+    				placement: place ? (place.id || place.tagName.toLowerCase()) : ''
+    			});
+    		});
+    	});
+    	document.querySelectorAll('.js-email').forEach(function (link) {
+    		link.addEventListener('click', function () { gtag('event', 'email_click'); });
+    	});
+    	document.querySelectorAll('a[href$="patient-check.jpg"]').forEach(function (link) {
+    		link.addEventListener('click', function () { gtag('event', 'patient_check_snapshot'); });
+    	});
+    	// Demo video: start, 25/50/75% watched, and finished (GA's recommended video events).
+    	document.querySelectorAll('#demo video').forEach(function (video) {
+    		var sent = {};
+    		function once(name, percent) {
+    			var key = name + (percent || '');
+    			if (sent[key]) return;
+    			sent[key] = true;
+    			gtag('event', name, { video_title: 'TrialCarta demo', video_percent: percent || 0 });
+    		}
+    		video.addEventListener('play', function () { once('video_start'); });
+    		video.addEventListener('timeupdate', function () {
+    			if (!video.duration) return;
+    			var watched = 100 * video.currentTime / video.duration;
+    			[25, 50, 75].forEach(function (p) { if (watched >= p) once('video_progress', p); });
+    		});
+    		video.addEventListener('ended', function () { once('video_complete', 100); });
+    	});
+    </script>
+
+  </body>
+  </html>
