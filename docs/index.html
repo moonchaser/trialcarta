@@ -953,6 +953,20 @@
     			});
     	});
 
+    	// The first time someone types in or picks from the contact form (GA's automatic
+    	// form_start doesn't see this form). The hidden spam-trap field is left out.
+    	(function () {
+    		var form = document.getElementById('contact-form'), started = false;
+    		function start(event) {
+    			var field = event.target;
+    			if (started || !field.name || field.name === '_gotcha' || field.type === 'hidden') return;
+    			started = true;
+    			gtag('event', 'contact_form_start', { first_field: field.name });
+    		}
+    		form.addEventListener('input', start);
+    		form.addEventListener('change', start);
+    	})();
+
     	// Analytics events (sent only on the live site; see the Google tag at the top).
     	// Buttons and links to the contact form, with what they were about and where they sit.
     	document.querySelectorAll('a[href="#contact"]').forEach(function (link) {
