@@ -923,6 +923,8 @@
 
     	// Send through Formspree, then go to /thanks/ (the Google Ads conversion page); without
     	// JavaScript the form still posts normally and Formspree shows its own thank-you page.
+    	// If Formspree turns down the background send (for example when reCAPTCHA is on in the
+    	// form's settings), post the form the ordinary way instead, so the request still arrives.
     	document.getElementById('contact-form').addEventListener('submit', function (event) {
     		event.preventDefault();
     		var form = event.target, button = form.querySelector('button[type=submit]');
@@ -931,7 +933,12 @@
     		error.classList.add('d-none');
     		fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
     			.then(function (response) {
-    				if (!response.ok) throw new Error('Formspree ' + response.status);
+    				if (!response.ok) {
+    					var post = function () { if (!post.done) { post.done = true; form.submit(); } };
+    					gtag('event', 'lead_fallback', { formspree_status: response.status, lead_interest: form.elements.interest.value, event_callback: post });
+    					setTimeout(post, 800);
+    					return;
+    				}
     				form.querySelectorAll('.row').forEach(function (row) { row.classList.add('d-none'); });
     				thanks.classList.remove('d-none');
     				// A request counts as a lead in Google Analytics. Leave for the
