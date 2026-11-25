@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<!-- Google tag (gtag.js): loaded only on the live site, so local previews aren't counted -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	if (/(^|\.)trialcarta\.com$/.test(location.hostname)) {
+		var ga = document.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-05L6VGT0W0';
+		document.head.appendChild(ga);
+		gtag('js', new Date());
+		gtag('config', 'G-05L6VGT0W0');
+	}
+</script>
+
+
+<meta charset="utf-8">
+
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<!-- SEO meta tags -->
+<title>How the Financing Screen is tested: backtests against royalty deals | TrialCarta</title>
+<meta name="description" content="We ran TrialCarta's Financing Screen as of July 2021 and December 2022 on what was public then, and checked which companies later sold a royalty: results, the signals that mattered, and the limits of the test.">
+<meta name="keywords" content="royalty financing backtest, biotech royalty deals, financing screen methodology, royalty purchase agreement, revenue interest, biotech deal sourcing, AUC">
+<link rel="canonical" href="https://www.trialcarta.com/finance/backtest/">
+
+<!-- Social previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trialcarta.com/finance/backtest/">
+<meta property="og:title" content="How the TrialCarta Financing Screen is tested">
+<meta property="og:description" content="Backtests on two past dates against the royalty deals that followed: what the screen found, which signals mattered, and what the test can't tell you.">
+<meta property="og:site_name" content="TrialCarta">
+<meta property="og:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TrialCarta: clinical trial research in minutes, checked against the source">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../../assets/favicon/icon-512.png">
+<link rel="apple-touch-icon" href="../../assets/favicon/apple-touch-icon.png">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "How the Financing Screen is tested",
+  "description": "Backtests of TrialCarta's Financing Screen as of July 2021 and December 2022 against the royalty deals that followed.",
+  "url": "https://www.trialcarta.com/finance/backtest/",
+  "publisher": {
+    "@type": "Organization",
+    "name": "TrialCarta",
+    "url": "https://www.trialcarta.com/",
+    "logo": "https://www.trialcarta.com/assets/favicon/icon-512.png"
+  }
+}
+</script>
+<meta name="author" content="TrialCarta">
+
+
+<!-- Theme switcher (color modes) -->
+<script src="../../assets/js/theme-switcher.js"></script>
+
+<!-- Import Google font (Inter) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+<!-- Vendor styles -->
+<link rel="stylesheet" media="screen" href="../../assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" media="screen" href="../../assets/vendor/aos/dist/aos.css">
+
+<!-- Font icons -->
+<link rel="stylesheet" href="../../assets/icons/around-icons.min.css">
+
+<!-- Theme styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="../../assets/css/theme.min.css">
+
+<!-- Page loading styles -->
+<style>
+	.page-loading {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transition: all .4s .2s ease-in-out;
+		transition: all .4s .2s ease-in-out;
+		background-color: #fff;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9999;
+	}
+	[data-bs-theme="dark"] .page-loading {
+		background-color: #121519;
+	}
+	.page-loading.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-loading-inner {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-transition: opacity .2s ease-in-out;
+		transition: opacity .2s ease-in-out;
+		opacity: 0;
+	}
+	.page-loading.active > .page-loading-inner {
+		opacity: 1;
+	}
+	.page-loading-inner > span {
+		display: block;
+		font-family: "Inter", sans-serif;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #6f788b;
+	}
+	[data-bs-theme="dark"] .page-loading-inner > span {
+		color: #fff;
+		opacity: .6;
+	}
+	.page-spinner {
+		display: inline-block;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: .75rem;
+		vertical-align: text-bottom;
+		background-color: #d7dde2; 
+		border-radius: 50%;
+		opacity: 0;
+		-webkit-animation: spinner .75s linear infinite;
+		animation: spinner .75s linear infinite;
+	}
+	[data-bs-theme="dark"] .page-spinner {
+		background-color: rgba(255,255,255,.25);
+	}
+	@-webkit-keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	@keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+</style>
+
+<style>
+	/* Anchor links land below the fixed navbar. */
+	section[id] { scroll-margin-top: 84px; }
+
+	/* Brand palette: the TrialCarta app's teal instead of the theme's default green.
+	   Filled buttons stay deep teal in both modes (white text 5.5:1); outline buttons,
+	   links and icons use bright teal in dark mode (9.8:1 on the dark background). */
+	:root, [data-bs-theme=light] {
+		--ar-primary: #0F766E;
+		--ar-primary-rgb: 15, 118, 110;
+		--ar-primary-text-emphasis: #115E59;
+		--ar-primary-bg-subtle: #E6F4F2;
+		--ar-primary-border-subtle: #C9E7E3;
+		--ar-link-color: #0F766E;
+		--ar-link-color-rgb: 15, 118, 110;
+		--ar-link-hover-color: #115E59;
+		--ar-focus-ring-color: rgba(15, 118, 110, .25);
+	}
+	[data-bs-theme=dark] {
+		--ar-primary: #2DD4BF;
+		--ar-primary-rgb: 45, 212, 191;
+		--ar-primary-text-emphasis: #5EEAD4;
+		--ar-primary-bg-subtle: #0B2421;
+		--ar-primary-border-subtle: #134E4A;
+		--ar-link-color: #2DD4BF;
+		--ar-link-color-rgb: 45, 212, 191;
+		--ar-link-hover-color: #5EEAD4;
+		--ar-focus-ring-color: rgba(45, 212, 191, .25);
+	}
+	.btn-primary {
+		--ar-btn-color: #fff; --ar-btn-bg: #0F766E; --ar-btn-border-color: #0F766E;
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #115E59; --ar-btn-hover-border-color: #115E59;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #134E4A; --ar-btn-active-border-color: #134E4A;
+		--ar-btn-disabled-bg: #0F766E; --ar-btn-disabled-border-color: #0F766E;
+		--ar-btn-focus-shadow-rgb: 15, 118, 110;
+	}
+	.btn-outline-primary {
+		--ar-btn-color: var(--ar-primary); --ar-btn-border-color: var(--ar-primary);
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #0F766E; --ar-btn-hover-border-color: #0F766E;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #115E59; --ar-btn-active-border-color: #115E59;
+		--ar-btn-focus-shadow-rgb: var(--ar-primary-rgb);
+	}
+	/* Call-to-action band: same deep teal in both modes. */
+	.cta-band { background-color: #0F766E; }
+</style>
+
+<!-- Page loading scripts -->
+<script>
+	(function () {
+		window.onload = function () {
+			const preloader = document.querySelector('.page-loading')
+			preloader.classList.remove('active')
+			setTimeout(function () {
+				preloader.remove()
+			}, 1500)
+		}
+	})()
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>.navbar-nav .nav-link{white-space:nowrap}</style>
+</head>
+
+<body class="bg-secondary">
+	<div class="page-loading active"><div class="page-loading-inner"><div class="page-spinner"></div><span>Loading...</span></div></div>
+	<main class="page-wrapper">
+		<!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+		<header class="navbar navbar-expand-xl fixed-top">
+			<div class="container">
+
+				<!-- Navbar brand (Logo) -->
+				<a class="navbar-brand pe-sm-3" href="../../">
+					<img src="../../assets/favicon/favicon.svg" width="30" height="30" class="me-2 rounded-2" alt="">TrialCarta
+				</a>
+
+				<!-- Theme switcher -->
+				<div class="form-check form-switch mode-switch order-xl-2 me-3 me-xl-4 ms-auto" data-bs-toggle="mode">
+					<input class="form-check-input" type="checkbox" id="theme-mode">
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-sun fs-lg"></i>
+					</label>
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-moon fs-lg"></i>
+					</label>
+				</div>
+
+				<a class="btn btn-primary btn-sm fs-sm order-xl-3 d-none d-sm-inline-flex" href="../../?interest=TrialCarta%20Pro%20for%20biotech%20finance&amp;from=backtest#contact">
+					<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+					Request a demo
+				</a>
+
+				<!-- Mobile menu toggler (Hamburger) -->
+				<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar collapse (Main navigation) -->
+				<nav class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+						<li class="nav-item">
+							<a class="nav-link" href="../../#how-it-works">How it works</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="../../finance/">Finance</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../clinical-ops/">Clinical ops</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../security/">Security &amp; teams</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../../examples/">Examples</a>
+						</li>
+					</ul>
+
+					<div class="d-sm-none p-3 mt-n3">
+						<a class="btn btn-primary w-100 mb-1" href="../../?interest=TrialCarta%20Pro%20for%20biotech%20finance&amp;from=backtest#contact">
+							<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+							Request a demo
+						</a>
+					</div>
+				</nav>
+
+			</div>
+		</header>
+
+		<section class="container pt-5 mt-5 pb-4">
+			<nav aria-label="breadcrumb" class="pt-4"><ol class="breadcrumb fs-sm"><li class="breadcrumb-item"><a href="../../">TrialCarta</a></li><li class="breadcrumb-item"><a href="../">Biotech finance</a></li><li class="breadcrumb-item active" aria-current="page">How the screen is tested</li></ol></nav>
+			<div class="mx-auto" style="max-width: 860px;">
+				<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-3">Methodology</span>
+				<h1 class="display-5 pb-2">Does the Financing Screen find the next royalty deals?</h1>
+				<p class="fs-lg">We ran the screen as it would have run on two past dates, using only what was public then, and checked which of the ranked companies went on to disclose a royalty or revenue-interest sale in their SEC filings over the next 30 months. Here is what it found, including what didn't work and what the test can't tell you.</p>
+			</div>
+		</section>
+
+		<section class="container pb-5">
+			<div class="row row-cols-1 row-cols-md-3 g-4 mx-auto" style="max-width: 1000px;">
+				<div class="col"><div class="card border-0 h-100 rounded-5"><div class="card-body text-center">
+					<div class="display-6 fw-semibold text-primary">3 of 10</div>
+					<p class="mb-0">of the top 10 on 1 July 2021 later sold a royalty. A random 10 would hold about 1.2.</p>
+				</div></div></div>
+				<div class="col"><div class="card border-0 h-100 rounded-5"><div class="card-body text-center">
+					<div class="display-6 fw-semibold text-primary">4 of 10</div>
+					<p class="mb-0">of the top 10 on 31 December 2022 later sold a royalty. A random 10 would hold about 1.3.</p>
+				</div></div></div>
+				<div class="col"><div class="card border-0 h-100 rounded-5"><div class="card-body text-center">
+					<div class="display-6 fw-semibold text-primary">0.83 · 0.68</div>
+					<p class="mb-0">AUC on the two dates: the chance a company that sold a royalty ranked above one that didn't. 0.50 is chance.</p>
+				</div></div></div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="method">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h2 pb-2">How the test works</h2>
+				<ol class="mb-0">
+					<li class="pb-2"><strong>Run the screen as of a past date.</strong> Industry phase 2 and 3 drug trials on ClinicalTrials.gov with a primary completion 6 to 24 months after that date, sponsors matched to SEC filers, and cash, burn and runway from the financial statements filed by then. Companies with more than 36 months of runway are left out.</li>
+					<li class="pb-2"><strong>Score them with fixed rules.</strong> The same points the app uses today: a phase 3 lead trial, 6 to 24 months of runway, a readout within 15 months, 200 or more participants, earlier trials of the lead drug and posted results, the sponsor's record of finishing trials, and a deduction when filings already mention a royalty deal. No AI model is involved in the score.</li>
+					<li class="pb-2"><strong>Leave out companies that had already sold a royalty.</strong> Their filings mentioned a royalty deal before the test date, so finding them again would prove nothing.</li>
+					<li class="pb-2"><strong>Look for deals over the next 30 months.</strong> Full-text search of every 8-K, 10-Q and 10-K on SEC EDGAR for "royalty purchase agreement", "revenue interest purchase agreement", "royalty interest purchase agreement", "synthetic royalty" and "royalty financing agreement".</li>
+					<li><strong>Measure the ranking.</strong> How many deal companies landed in the top 10, 20 and 50, and the AUC across the whole list.</li>
+				</ol>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="results">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h2 pb-2">Results</h2>
+				<div class="table-responsive">
+					<table class="table fs-sm align-middle">
+						<thead><tr><th>As of</th><th>Ranked (measured)</th><th>Later sold a royalty</th><th>Top 10</th><th>Top 20</th><th>Top 50</th><th>AUC</th></tr></thead>
+						<tbody>
+							<tr><td>1 July 2021</td><td>72 (67)</td><td>8 (12%)</td><td>3 <span class="text-body-secondary">vs 1.2</span></td><td>5 <span class="text-body-secondary">vs 2.4</span></td><td>8 of 8</td><td>0.83</td></tr>
+							<tr><td>31 December 2022</td><td>105 (95)</td><td>12 (13%)</td><td>4 <span class="text-body-secondary">vs 1.3</span></td><td>5 <span class="text-body-secondary">vs 2.5</span></td><td>10 of 12</td><td>0.68</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="fs-sm text-body-secondary mb-0">"vs" is what a random pick of the same size would hold on average. "Measured" excludes companies that had already disclosed a royalty deal. The scoring shown is the app's default. The original, simpler score did about the same on 2021 (AUC 0.81) and a little worse on 2022 (0.65, 2 in the top 10).</p>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="signals">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h2 pb-2">Which signals mattered</h2>
+				<p>Each signal on its own: the share of companies with it that later sold a royalty, against the share without it.</p>
+				<div class="table-responsive">
+					<table class="table fs-sm align-middle">
+						<thead><tr><th>Signal</th><th>2021: with / without</th><th>2022: with / without</th></tr></thead>
+						<tbody>
+							<tr><td>Lead drug posted results from an earlier trial</td><td>27% / 8%</td><td>33% / 9%</td></tr>
+							<tr><td>Phase 3 lead trial</td><td>21% / 5%</td><td>25% / 5%</td></tr>
+							<tr><td>200 or more participants</td><td>22% / 5%</td><td>20% / 9%</td></tr>
+							<tr><td>Lead drug finished an earlier trial</td><td>20% / 5%</td><td>21% / 9%</td></tr>
+							<tr><td>Sponsor has run 5 or more trials</td><td>16% / 0%</td><td>17% / 6%</td></tr>
+							<tr><td>Cash runs out before the readout</td><td>11% / 12%</td><td>10% / 15%</td></tr>
+							<tr><td>Readout within 15 months</td><td>11% / 12%</td><td>10% / 16%</td></tr>
+							<tr><td>Going-concern wording in filings</td><td>4% / 16%</td><td>9% / 14%</td></tr>
+							<tr><td>Only one drug in the clinic</td><td>0% / 14%</td><td>0% / 14%</td></tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="mb-0"><strong>What this says:</strong> among companies with a readout coming and limited runway, the ones that went on to sell a royalty were those with stronger evidence: a phase 3 drug with results already posted, larger trials, and a sponsor that finishes what it starts. Running short of cash before the readout did not, on its own, make a sale more likely, and going-concern wording made it less likely. The default score still gives points for 6 to 24 months of runway and a near readout, because that's when a company has to raise. A score that dropped them did as well on 2021 but no better (AUC 0.81), so they stay.</p>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="limits">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h2 pb-2">What the test can't tell you</h2>
+				<ul class="mb-0">
+					<li class="pb-2"><strong>Small numbers.</strong> 8 and 12 companies sold a royalty. A difference of one or two companies is noise, and the error bars on each AUC are wide.</li>
+					<li class="pb-2"><strong>The default score was chosen after both tests.</strong> It's the one that did best on both dates, so these results are not a clean out-of-sample test of it. A third score tuned on the 2022 date didn't beat it on 2021 (AUC 0.81). The fair test is the next 30 months.</li>
+					<li class="pb-2"><strong>Today's registry records.</strong> ClinicalTrials.gov doesn't keep easy snapshots, so a readout date that slipped after the test date shows its new date, and trials are picked by today's dates.</li>
+					<li class="pb-2"><strong>Late filings.</strong> Figures for the last quarter before the test date may have been filed shortly after it.</li>
+					<li class="pb-2"><strong>Deal wording isn't always a sale.</strong> A company can describe a partner's royalty deal in its filings. Each match was listed with its filings so it can be checked.</li>
+					<li><strong>It tests who sells a royalty, not what one is worth.</strong> The screen finds companies likely to raise this way. It doesn't value a royalty, estimate a probability of success or size a market. Deal terms are quoted from filings as written, and terms a company redacted aren't filled in. TrialCarta is a research aid, not investment advice.</li>
+				</ul>
+			</div>
+		</section>
+
+		<section class="container pb-5">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h4">Run it yourself</h2>
+				<p class="mb-0">The backtest uses the screen's own code: it re-runs the screen as of a past date, searches EDGAR for the deals that followed, and writes the report above, with every company and filing listed so each one can be checked. Ask us in a demo and we'll run it for a date you choose.</p>
+			</div>
+		</section>
+
+		<section class="container pb-5 mb-4">
+			<div class="cta-band rounded-5 text-center px-4 py-5 mx-auto" style="max-width: 900px;" data-bs-theme="dark">
+				<h2 class="h2 text-white">See the full reports</h2>
+				<p class="fs-lg text-white opacity-75 mx-auto" style="max-width: 600px;">We'll walk through both backtests company by company, with the filings behind each deal, and run this week's screen.</p>
+				<a class="btn btn-lg btn-light" href="../../?interest=TrialCarta%20Pro%20for%20biotech%20finance&amp;from=backtest#contact">Request a demo</a>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer pt-lg-5 pt-4 pb-5">
+		<div class="container pt-3 mt-md-2 mt-lg-3">
+			<div class="row gy-md-5 gy-4 mb-md-5 mb-4 pb-lg-2">
+				<div class="col-lg-4">
+					<a class="navbar-brand d-inline-flex align-items-center mb-lg-4 mb-3" href="../../">
+						<img src="../../assets/favicon/favicon.svg" width="28" height="28" class="me-2 rounded-2" alt=""><span class="text-nav">TrialCarta</span>
+					</a>
+					<p class="mb-4 pb-lg-1 fs-xs text-body-secondary" style="max-width: 320px;">Diligence any asset's landscape in minutes, checked against the source. Private: it runs on your own Mac or your team's server.</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row row-cols-sm-3 row-cols-1">
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../#how-it-works">How it works</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../finance/">Biotech finance</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../clinical-ops/">Clinical ops &amp; sites</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../security/">Security &amp; teams</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../#contact">Request a demo</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../examples/">Examples</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../finance/backtest/">How the screen is tested</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../insights/mash-trial-landscape/">MASH trial landscape</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../guides/pdf-redaction-check/">Check PDF redaction</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../../guides/check-memo-trial-dates/">Check a memo's trial dates</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav flex-nowrap mb-3">
+									<a class="nav-link fw-normal p-0 mt-n1" href="../../#contact"><i class="ai-mail lead text-primary me-2"></i>Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav fs-sm text-body-secondary">&copy;&nbsp;<span id="spanYear"></span>&nbsp;TrialCarta. All rights reserved.</div>
+		</div>
+	</footer>
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+    	<svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    		<circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    	</svg>
+    	<i class="ai-arrow-up"></i>
+    </a>
+
+
+
+    <script src="../../assets/js/theme.min.js"></script>
+    <script src="../../assets/js/scroll-depth.js"></script>
+    <script>$('#spanYear').html(new Date().getFullYear());</script>
+  </body>
+  </html>
