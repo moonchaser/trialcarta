@@ -244,6 +244,14 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>.navbar-nav .nav-link{white-space:nowrap}</style>
+<style>
+.demo-play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;width:100%;border:0;border-radius:var(--ar-border-radius-xl,1rem);background:rgba(15,23,42,.18);color:#fff;cursor:pointer;transition:background .2s}
+.demo-play:hover,.demo-play:focus-visible{background:rgba(15,23,42,.32)}
+.demo-play-icon{display:flex;align-items:center;justify-content:center;width:5.5rem;height:5.5rem;border-radius:50%;background:var(--ar-primary,#2f6f68);box-shadow:0 .75rem 2rem rgba(0,0,0,.3);font-size:2.25rem;padding-left:.3rem;transition:transform .2s}
+.demo-play:hover .demo-play-icon,.demo-play:focus-visible .demo-play-icon{transform:scale(1.08)}
+.demo-play-label{font-weight:600;font-size:1rem;padding:.35rem 1rem;border-radius:2rem;background:rgba(15,23,42,.75)}
+@media (max-width:575.98px){.demo-play-icon{width:4rem;height:4rem;font-size:1.6rem}}
+</style>
 </head>
 
 
@@ -431,9 +439,15 @@
 			<h2 class="h1 text-center pb-2">See it run</h2>
 			<p class="fs-lg text-center pb-4 mb-2 mx-auto" style="max-width: 640px;">A real session, sped up: see when a big drugmaker loses exclusivity, find who needs a drug, map a trial landscape, then switch the internet off and ask about a confidential teaser.</p>
 			<div class="mx-auto" style="max-width: 960px;">
-				<video class="d-block w-100 rounded-4 shadow-lg" controls playsinline preload="none" poster="assets/img/trialcarta/demo-poster.jpg?v=2">
-					<source src="assets/video/trialcarta-demo.mp4?v=2" type="video/mp4">
-				</video>
+				<div class="demo-player position-relative">
+					<video class="d-block w-100 rounded-4 shadow-lg" controls playsinline preload="none" poster="assets/img/trialcarta/demo-poster.jpg?v=2">
+						<source src="assets/video/trialcarta-demo.mp4?v=2" type="video/mp4">
+					</video>
+					<button type="button" class="demo-play" aria-label="Play the TrialCarta demo video" hidden>
+						<span class="demo-play-icon"><i class="ai-play-filled"></i></span>
+						<span class="demo-play-label">Watch the demo</span>
+					</button>
+				</div>
 			</div>
 		</section>
 
@@ -497,8 +511,8 @@
 					<div class="card border-0 h-100 rounded-5">
 						<div class="card-body">
 							<i class="ai-file-text fs-1 text-primary d-block mb-3"></i>
-							<h3 class="h5">A brief, or a deck</h3>
-							<p class="mb-0">A one-page PDF brief with no AI-written text, safe to send outside the team, or editable PowerPoint slides with every row linked to its source.</p>
+							<h3 class="h5">Take it anywhere</h3>
+							<p class="mb-0">Export searches, screens and landscapes as editable PowerPoint, PDF, CSV for Excel or Markdown, and add dates to Outlook, Google or Apple Calendar. Every row links to its source, and the one-page PDF brief has no AI-written text, so it's safe to send outside the team.</p>
 						</div>
 					</div>
 				</div>
@@ -863,6 +877,18 @@
     			[25, 50, 75].forEach(function (p) { if (watched >= p) once('video_progress', p); });
     		});
     		video.addEventListener('ended', function () { once('video_complete', 100); });
+    	});
+    </script>
+
+    <script>
+    	// The whole poster plays the demo; the browser's own controls take over once it starts.
+    	document.querySelectorAll('.demo-player').forEach(function (player) {
+    		var video = player.querySelector('video'), button = player.querySelector('.demo-play');
+    		video.controls = false;
+    		button.hidden = false;
+    		function start() { button.hidden = true; video.controls = true; video.play(); }
+    		button.addEventListener('click', start);
+    		video.addEventListener('play', function () { button.hidden = true; video.controls = true; });
     	});
     </script>
 
