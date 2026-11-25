@@ -350,6 +350,7 @@
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#find">Find</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#diligence">Diligence</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#deals">Deals</a>
+				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#samples">Samples</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#trust">Why rely on it</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#pricing">Pricing</a>
 			</nav>
@@ -367,7 +368,7 @@
 				<div class="flow-step">
 					<div class="flow-head"><div class="flow-count">140</div><div class="flow-unit">listed drug developers</div><span class="phase">Public data</span></div>
 					<div class="flow-body"><div class="lbl">The work</div>Rank them, pick a short list, and know each one's readouts, cash, holders, insider trades and news.</div>
-					<div class="flow-tc"><div class="lbl">TrialCarta</div>The Financing Screen ranks them by rule, <a href="backtest/">tested on history</a>. Cards, landscapes, Buyer Fit, alerts, and cited briefs.</div>
+					<div class="flow-tc"><div class="lbl">TrialCarta</div>The Financing Screen ranks them by rule, <a href="backtest/">tested on history</a>. Cards, landscapes, Buyer Fit, <a href="#royalties">royalty history</a>, <a href="#release-check">press releases checked against the registry</a>, alerts and cited briefs.</div>
 				</div>
 				<div class="flow-step private">
 					<div class="flow-head"><div class="flow-count">3–5</div><div class="flow-unit">data rooms</div><span class="phase">Under NDA</span></div>
@@ -562,6 +563,68 @@
 			</div>
 		</section>
 
+		<section class="container pb-5" id="release-check">
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-5">
+					<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-2">New</span>
+					<h3 class="h3">Press release vs the registry</h3>
+					<p>Click <strong>Check vs Registry</strong> beside a company's data or FDA release and TrialCarta compares what it says with each trial's ClinicalTrials.gov record, quoting both sides.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pb-2"><i class="ai-check text-primary fs-4 me-3"></i><span>The phase it names, the enrollment, and the primary endpoint, including a "primary" endpoint that's registered as secondary.</span></li>
+						<li class="d-flex pb-2"><i class="ai-calendar-check text-primary fs-4 me-3"></i><span>Results announced before the registered primary completion, or while the registry still says recruiting.</span></li>
+						<li class="d-flex pb-2"><i class="ai-link text-primary fs-4 me-3"></i><span>No trial ID in the release? It's matched by the drug code and the trial's name or timing, and the match is shown for you to confirm.</span></li>
+						<li class="d-flex"><i class="ai-quotes text-primary fs-4 me-3"></i><span>Rules, not AI. A difference is a question for management, not proof of a misstatement.</span></li>
+					</ul>
+				</div>
+				<div class="col-lg-7">
+					<div class="card border-0 shadow rounded-4"><div class="card-body p-3 p-sm-4">
+						<div class="table-responsive">
+							<table class="table table-sm fs-sm mb-0 align-top">
+								<thead><tr><th>Verdict</th><th>The release says</th><th>The registry says</th></tr></thead>
+								<tbody>
+									<tr><td><span class="badge bg-warning text-dark">Check</span><div class="fs-xs text-body-secondary">Enrollment</div></td><td>"…a randomized, double-blind, placebo-controlled trial in approximately 180 adults with obesity"</td><td>280 participants (actual)</td></tr>
+									<tr><td><span class="badge bg-warning text-dark">Check</span><div class="fs-xs text-body-secondary">Trial</div></td><td>No trial ID in the release; it names the drug code</td><td>Matched to the drug's completed phase 2 trial by code and timing</td></tr>
+									<tr><td><span class="badge bg-danger">Differs</span><div class="fs-xs text-body-secondary">Primary endpoint</div></td><td>"The primary endpoint was MASH resolution without worsening of fibrosis at Week 52."</td><td>Registered as a secondary endpoint; the primary is fibrosis improvement</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div></div>
+					<p class="fs-sm text-body-secondary mt-2 mb-0">First two rows from a live check of a company's topline release in November 2026, names left out; the third is from the app's tests.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="royalties">
+			<div class="row align-items-center g-4 g-lg-5 flex-lg-row-reverse">
+				<div class="col-lg-5">
+					<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-2">New</span>
+					<h3 class="h3">Who owns the royalty?</h3>
+					<p><strong>Load Royalties</strong> on a company and TrialCarta reads six years of its 8-Ks, 10-Ks and 10-Qs for the royalty and revenue-interest sales it disclosed, and the royalties it owes the companies it licensed its drugs from.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pb-2"><i class="ai-briefcase text-primary fs-4 me-3"></i><span>Buyer, money received, share of sales, cap and product, each quoted from its filing.</span></li>
+						<li class="d-flex pb-2"><i class="ai-copy text-primary fs-4 me-3"></i><span>The same deal across an 8-K, a 10-K and later 10-Qs is shown once; accounting lines that only restate it are skipped.</span></li>
+						<li class="d-flex"><i class="ai-lock-closed text-primary fs-4 me-3"></i><span>Terms a filing redacted or doesn't state are shown as not disclosed, never estimated.</span></li>
+					</ul>
+				</div>
+				<div class="col-lg-7">
+					<div class="card border-0 shadow rounded-4"><div class="card-body p-3 p-sm-4">
+						<div class="table-responsive">
+							<table class="table table-sm fs-sm mb-0 align-top">
+								<thead><tr><th></th><th>Filed</th><th>What the filings say</th></tr></thead>
+								<tbody>
+									<tr><td><span class="badge bg-primary bg-opacity-10 text-primary">Sold</span></td><td class="text-nowrap">2026</td><td>A royalty fund paid $70.0 million for royalties on the company's partnered drug</td></tr>
+									<tr><td><span class="badge bg-primary bg-opacity-10 text-primary">Sold</span></td><td class="text-nowrap">2026</td><td>The same fund paid $60.0 million more on the same drug (amended agreement)</td></tr>
+									<tr><td><span class="badge bg-primary bg-opacity-10 text-primary">Sold</span></td><td class="text-nowrap">2023</td><td>Another royalty buyer paid $100.0 million for a single-digit royalty on a second drug</td></tr>
+									<tr><td><span class="badge bg-secondary bg-opacity-10 text-body-secondary">Owed</span></td><td class="text-nowrap">2025</td><td>Low single-digit royalties owed to a third party</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div></div>
+					<p class="fs-sm text-body-secondary mt-2 mb-0">From a live run on one company's public filings in November 2026, names left out. In the app, each row links to its filing.</p>
+				</div>
+			</div>
+		</section>
+
 		<section class="container pt-5 pb-4" id="deals">
 			<h2 class="h1 text-center pb-2">Deals</h2>
 			<p class="fs-lg text-center mx-auto mb-0" style="max-width: 720px;">Pending acquisitions and what comparable deals paid, the terms in licensing and royalty agreements, and short lists to take to the meeting.</p>
@@ -605,6 +668,18 @@
 					<h3 class="h5">Alerts on deals and news</h3>
 					<p class="mb-0">Hear when a watched company files a new offering, ends an agreement, issues a press release about data, the FDA, a deal or financing, or leaves the screen.</p>
 				</div></div></div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="samples">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h2 pb-2">See the output before you talk to us</h2>
+				<p>A target landscape for CLDN6 as TrialCarta exports it: 14 industry trials, 10 programs and 27 congress abstracts, run on public data in November 2026. For this sample, sponsor names are replaced with letters and cash and runway are left out; in the app they're shown, each linked to its filing.</p>
+				<div class="d-flex flex-wrap gap-3">
+					<a class="btn btn-outline-primary" href="../assets/samples/trialcarta-sample-target-landscape.pptx" download><i class="ai-download me-2"></i>PowerPoint sample</a>
+					<a class="btn btn-outline-primary" href="../assets/samples/trialcarta-sample-target-landscape.xlsx" download><i class="ai-download me-2"></i>Excel sample</a>
+					<a class="btn btn-link" href="../?interest=A%20sample%20financing%20brochure&amp;from=finance-samples#contact">Ask for a Financing Screen brochure</a>
+				</div>
 			</div>
 		</section>
 
@@ -663,6 +738,10 @@
 				<p class="fs-sm">Abstracts are found by title through Crossref in the ASCO, ESMO, AACR, ASH, SITC and EHA supplements; titles only, so an abstract that doesn't name the target or program code in its title isn't found. Press releases come from the company's 8-K filings on SEC EDGAR and, when you click Load News, from the news feed on its own investor site.</p>
 				<h3 class="h6 mt-3">What can we export?</h3>
 				<p class="fs-sm">Editable PowerPoint with real tables, so you can apply your own template; PDF, including a shareable financing brochure; Excel workbooks, with numbers and dates you can sort and sum, trial ids and sources as links, and the header frozen with filters; CSV; and Markdown. Catalyst dates go straight into Outlook, Google or Apple Calendar.</p>
+				<h3 class="h6 mt-3">How does the press release check work?</h3>
+				<p class="fs-sm">It reads the release and the ClinicalTrials.gov record of each trial it names (or, without a trial ID, the drug's trial matched by code and name or timing), and compares phase, enrollment, the primary endpoint, timing and status by rules. Both sides are quoted. A difference is a question to ask, not proof of a misstatement.</p>
+				<h3 class="h6 mt-3">How do you know who owns a royalty?</h3>
+				<p class="fs-sm">From the company's own SEC filings: TrialCarta searches six years of its 8-Ks, 10-Ks and 10-Qs for royalty and revenue-interest sales and royalty obligations, and quotes the sentences. A deal a company never disclosed, or described only in other words, won't show.</p>
 				<h3 class="h6 mt-3">Does it cover companies outside the US?</h3>
 				<p class="fs-sm">Their trials, yes. Cash and runway cover companies listed in the US, and private funding covers US private raises.</p>
 				<h3 class="h6 mt-3">Can we try it?</h3>
