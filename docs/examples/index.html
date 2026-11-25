@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<!-- Google tag (gtag.js): loaded only on the live site, so local previews aren't counted -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	if (/(^|\.)trialcarta\.com$/.test(location.hostname)) {
+		var ga = document.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-05L6VGT0W0';
+		document.head.appendChild(ga);
+		gtag('js', new Date());
+		gtag('config', 'G-05L6VGT0W0');
+	}
+</script>
+
+
+<meta charset="utf-8">
+
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<!-- SEO meta tags -->
+<title>Examples: TrialCarta outputs on public data | TrialCarta</title>
+<meta name="description" content="Worked examples of TrialCarta on public data: a MASH trial landscape, checking that a PDF is really redacted, and checking a diligence memo's trial dates against the registry.">
+<meta name="keywords" content="clinical trial landscape example, MASH trials, PDF redaction check, diligence memo check, ClinicalTrials.gov examples">
+<link rel="canonical" href="https://www.trialcarta.com/examples/">
+
+<!-- Social previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trialcarta.com/examples/">
+<meta property="og:title" content="TrialCarta examples">
+<meta property="og:description" content="TrialCarta on public data: a trial landscape, a redaction check and a memo date check.">
+<meta property="og:site_name" content="TrialCarta">
+<meta property="og:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TrialCarta: clinical trial research in minutes, checked against the source">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/icon-512.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TrialCarta Pro for biotech finance",
+  "description": "Find drug developers that need capital before their next readout, listed and private, from public records.",
+  "url": "https://www.trialcarta.com/finance/",
+  "publisher": { "@type": "Organization", "name": "TrialCarta", "url": "https://www.trialcarta.com/", "logo": "https://www.trialcarta.com/assets/favicon/icon-512.png" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Where does the data come from?", "acceptedAnswer": { "@type": "Answer", "text": "Public sources only: public trial registries, company filings and the published literature, read fresh each time you run it. Every figure links to where it came from." } },
+    { "@type": "Question", "name": "Do our deal documents leave our office?", "acceptedAnswer": { "@type": "Answer", "text": "No. TrialCarta runs on your Mac, including the AI model. Only the public searches go out; your documents, questions and notes stay on the computer." } },
+    { "@type": "Question", "name": "Can TrialCarta use our internal data?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Point it at a folder and it reads your documents on your Mac, next to the public sources. For larger setups, we connect your internal sources and the licensed databases you already subscribe to during onboarding, on your machines. Nothing is uploaded to us." } },
+    { "@type": "Question", "name": "Where do the FDA decision dates come from?", "acceptedAnswer": { "@type": "Answer", "text": "From the companies' own public filings: TrialCarta finds the PDUFA date a filing states, quotes the sentence and links to the filing. Companies that don't state a date aren't covered, and FDA can act before or after the date." } },
+    { "@type": "Question", "name": "Is it investment advice?", "acceptedAnswer": { "@type": "Answer", "text": "No. It's a screening and research aid built on public data. Figures are approximate; check them against the filings before relying on them." } }
+  ]
+}
+</script>
+<meta name="author" content="TrialCarta">
+
+
+<!-- Theme switcher (color modes) -->
+<script src="../assets/js/theme-switcher.js"></script>
+
+<!-- Import Google font (Inter) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+<!-- Vendor styles -->
+<link rel="stylesheet" media="screen" href="../assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" media="screen" href="../assets/vendor/aos/dist/aos.css">
+
+<!-- Font icons -->
+<link rel="stylesheet" href="../assets/icons/around-icons.min.css">
+
+<!-- Theme styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="../assets/css/theme.min.css">
+
+<!-- Page loading styles -->
+<style>
+	.page-loading {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transition: all .4s .2s ease-in-out;
+		transition: all .4s .2s ease-in-out;
+		background-color: #fff;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9999;
+	}
+	[data-bs-theme="dark"] .page-loading {
+		background-color: #121519;
+	}
+	.page-loading.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-loading-inner {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-transition: opacity .2s ease-in-out;
+		transition: opacity .2s ease-in-out;
+		opacity: 0;
+	}
+	.page-loading.active > .page-loading-inner {
+		opacity: 1;
+	}
+	.page-loading-inner > span {
+		display: block;
+		font-family: "Inter", sans-serif;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #6f788b;
+	}
+	[data-bs-theme="dark"] .page-loading-inner > span {
+		color: #fff;
+		opacity: .6;
+	}
+	.page-spinner {
+		display: inline-block;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: .75rem;
+		vertical-align: text-bottom;
+		background-color: #d7dde2; 
+		border-radius: 50%;
+		opacity: 0;
+		-webkit-animation: spinner .75s linear infinite;
+		animation: spinner .75s linear infinite;
+	}
+	[data-bs-theme="dark"] .page-spinner {
+		background-color: rgba(255,255,255,.25);
+	}
+	@-webkit-keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	@keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+</style>
+
+<style>
+	/* Anchor links land below the fixed navbar. */
+	section[id] { scroll-margin-top: 84px; }
+
+	/* Brand palette: the TrialCarta app's teal instead of the theme's default green.
+	   Filled buttons stay deep teal in both modes (white text 5.5:1); outline buttons,
+	   links and icons use bright teal in dark mode (9.8:1 on the dark background). */
+	:root, [data-bs-theme=light] {
+		--ar-primary: #0F766E;
+		--ar-primary-rgb: 15, 118, 110;
+		--ar-primary-text-emphasis: #115E59;
+		--ar-primary-bg-subtle: #E6F4F2;
+		--ar-primary-border-subtle: #C9E7E3;
+		--ar-link-color: #0F766E;
+		--ar-link-color-rgb: 15, 118, 110;
+		--ar-link-hover-color: #115E59;
+		--ar-focus-ring-color: rgba(15, 118, 110, .25);
+	}
+	[data-bs-theme=dark] {
+		--ar-primary: #2DD4BF;
+		--ar-primary-rgb: 45, 212, 191;
+		--ar-primary-text-emphasis: #5EEAD4;
+		--ar-primary-bg-subtle: #0B2421;
+		--ar-primary-border-subtle: #134E4A;
+		--ar-link-color: #2DD4BF;
+		--ar-link-color-rgb: 45, 212, 191;
+		--ar-link-hover-color: #5EEAD4;
+		--ar-focus-ring-color: rgba(45, 212, 191, .25);
+	}
+	.btn-primary {
+		--ar-btn-color: #fff; --ar-btn-bg: #0F766E; --ar-btn-border-color: #0F766E;
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #115E59; --ar-btn-hover-border-color: #115E59;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #134E4A; --ar-btn-active-border-color: #134E4A;
+		--ar-btn-disabled-bg: #0F766E; --ar-btn-disabled-border-color: #0F766E;
+		--ar-btn-focus-shadow-rgb: 15, 118, 110;
+	}
+	.btn-outline-primary {
+		--ar-btn-color: var(--ar-primary); --ar-btn-border-color: var(--ar-primary);
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #0F766E; --ar-btn-hover-border-color: #0F766E;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #115E59; --ar-btn-active-border-color: #115E59;
+		--ar-btn-focus-shadow-rgb: var(--ar-primary-rgb);
+	}
+	/* Call-to-action band: same deep teal in both modes. */
+	.cta-band { background-color: #0F766E; }
+</style>
+
+<!-- Page loading scripts -->
+<script>
+	(function () {
+		window.onload = function () {
+			const preloader = document.querySelector('.page-loading')
+			preloader.classList.remove('active')
+			setTimeout(function () {
+				preloader.remove()
+			}, 1500)
+		}
+	})()
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>.navbar-nav .nav-link{white-space:nowrap}</style>
+</head>
+
+<body class="bg-secondary">
+	<div class="page-loading active"><div class="page-loading-inner"><div class="page-spinner"></div><span>Loading...</span></div></div>
+	<main class="page-wrapper">
+		<!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+		<header class="navbar navbar-expand-xl fixed-top">
+			<div class="container">
+
+				<!-- Navbar brand (Logo) -->
+				<a class="navbar-brand pe-sm-3" href="../">
+					<img src="../assets/favicon/favicon.svg" width="30" height="30" class="me-2 rounded-2" alt="">TrialCarta
+				</a>
+
+				<!-- Theme switcher -->
+				<div class="form-check form-switch mode-switch order-xl-2 me-3 me-xl-4 ms-auto" data-bs-toggle="mode">
+					<input class="form-check-input" type="checkbox" id="theme-mode">
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-sun fs-lg"></i>
+					</label>
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-moon fs-lg"></i>
+					</label>
+				</div>
+
+				<a class="btn btn-primary btn-sm fs-sm order-xl-3 d-none d-sm-inline-flex" href="../#contact" data-interest="TrialCarta demo">
+					<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+					Request a demo
+				</a>
+
+				<!-- Mobile menu toggler (Hamburger) -->
+				<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar collapse (Main navigation) -->
+				<nav class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+						<li class="nav-item">
+							<a class="nav-link" href="../#how-it-works">How it works</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../finance/">Finance</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../clinical-ops/">Clinical ops</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../security/">Security &amp; teams</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="./" aria-current="page">Examples</a>
+						</li>
+					</ul>
+
+					<div class="d-sm-none p-3 mt-n3">
+						<a class="btn btn-primary w-100 mb-1" href="../#contact">
+							<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+							Request a demo
+						</a>
+					</div>
+				</nav>
+
+			</div>
+		</header>
+
+		<section class="container pt-5 mt-5 pb-4">
+			<nav aria-label="breadcrumb" class="pt-4"><ol class="breadcrumb fs-sm"><li class="breadcrumb-item"><a href="../">TrialCarta</a></li><li class="breadcrumb-item active" aria-current="page">Examples</li></ol></nav>
+			<div class="mx-auto text-center" style="max-width: 760px;">
+				<h1 class="display-5 pb-2">Examples on public data</h1>
+				<p class="fs-lg mb-0">What TrialCarta produces, worked through on public registries and filings, and how to do the same checks by hand.</p>
+			</div>
+		</section>
+
+		<section class="container pb-5">
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col">
+					<a class="card border-0 h-100 rounded-5 text-decoration-none" href="../insights/mash-trial-landscape/">
+						<img class="card-img-top rounded-top-5 border-bottom" style="height: 220px; object-fit: cover; object-position: center;" src="../assets/img/trialcarta/readout-timeline.jpg" loading="lazy" alt="A readout timeline of ongoing MASH trials, colored by phase">
+						<div class="card-body">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-2">Landscape</span>
+							<h2 class="h5">MASH clinical trial landscape</h2>
+							<p class="fs-sm mb-0">274 industry-sponsored phase 2 and 3 MASH trials: the ongoing phase 3 trials and their sponsors, readouts due in the next year, how long phase 2 trials take, and why trials stopped.</p>
+						</div>
+					</a>
+				</div>
+				<div class="col">
+					<a class="card border-0 h-100 rounded-5 text-decoration-none" href="../guides/pdf-redaction-check/">
+						<img class="card-img-top rounded-top-5 border-bottom" style="height: 220px; object-fit: cover; object-position: center;" src="../assets/img/trialcarta/redaction-check.jpg" loading="lazy" alt="A redaction report on made-up test documents, with every value masked">
+						<div class="card-body">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-2">Guide · study teams</span>
+							<h2 class="h5">How to check that a PDF is really redacted</h2>
+							<p class="fs-sm mb-0">A black box on a PDF doesn't always remove the text under it. The five ways redaction fails, five checks by hand, and a check that runs on your own computer.</p>
+						</div>
+					</a>
+				</div>
+				<div class="col">
+					<a class="card border-0 h-100 rounded-5 text-decoration-none" href="../guides/check-memo-trial-dates/">
+						<img class="card-img-top rounded-top-5 border-bottom" style="height: 220px; object-fit: cover; object-position: center;" src="../assets/img/trialcarta/catalyst-calendar.jpg" loading="lazy" alt="A catalyst calendar of trial readouts and an FDA decision date quoted from a filing">
+						<div class="card-body">
+							<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-2">Guide · biotech finance</span>
+							<h2 class="h5">Check that your memo's trial dates are still right</h2>
+							<p class="fs-sm mb-0">Readout dates move, trials stop enrolling and PDUFA dates get extended. Check a diligence memo or forecast against ClinicalTrials.gov and SEC filings, by hand or with TrialCarta.</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5 mb-4">
+			<div class="cta-band rounded-5 text-center px-4 py-5 mx-auto" style="max-width: 900px;" data-bs-theme="dark">
+				<h2 class="h2 text-white">Want one of these for your indication?</h2>
+				<p class="fs-lg text-white opacity-75 mx-auto" style="max-width: 600px;">Tell us the condition, target or company, and we'll run it live in a demo.</p>
+				<a class="btn btn-lg btn-light" href="../?interest=Something%20else&amp;from=examples#contact">Request a demo</a>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer pt-lg-5 pt-4 pb-5">
+		<div class="container pt-3 mt-md-2 mt-lg-3">
+			<div class="row gy-md-5 gy-4 mb-md-5 mb-4 pb-lg-2">
+				<div class="col-lg-4">
+					<a class="navbar-brand d-inline-flex align-items-center mb-lg-4 mb-3" href="../">
+						<img src="../assets/favicon/favicon.svg" width="28" height="28" class="me-2 rounded-2" alt=""><span class="text-nav">TrialCarta</span>
+					</a>
+					<p class="mb-4 pb-lg-1 fs-xs text-body-secondary" style="max-width: 320px;">Diligence any asset's landscape in minutes, checked against the source. Private: it runs on your own Mac or your team's server.</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row row-cols-sm-3 row-cols-1">
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#how-it-works">How it works</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../finance/">Biotech finance</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../clinical-ops/">Clinical ops &amp; sites</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../security/">Security &amp; teams</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#contact">Request a demo</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../examples/">Examples</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../insights/mash-trial-landscape/">MASH trial landscape</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/pdf-redaction-check/">Check PDF redaction</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/check-memo-trial-dates/">Check a memo's trial dates</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav flex-nowrap mb-3">
+									<a class="nav-link fw-normal p-0 mt-n1" href="../#contact"><i class="ai-mail lead text-primary me-2"></i>Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav fs-sm text-body-secondary">&copy;&nbsp;<span id="spanYear"></span>&nbsp;TrialCarta. All rights reserved.</div>
+		</div>
+	</footer>
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+    	<svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    		<circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    	</svg>
+    	<i class="ai-arrow-up"></i>
+    </a>
+
+
+
+    <script src="../assets/js/theme.min.js"></script>
+    <script src="../assets/js/scroll-depth.js"></script>
+    <script>$('#spanYear').html(new Date().getFullYear());</script>
+  </body>
+  </html>

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<!-- Google tag (gtag.js): loaded only on the live site, so local previews aren't counted -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	if (/(^|\.)trialcarta\.com$/.test(location.hostname)) {
+		var ga = document.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-05L6VGT0W0';
+		document.head.appendChild(ga);
+		gtag('js', new Date());
+		gtag('config', 'G-05L6VGT0W0');
+	}
+</script>
+
+
+<meta charset="utf-8">
+
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<!-- SEO meta tags -->
+<title>TrialCarta for clinical operations, study teams and sites | TrialCarta</title>
+<meta name="description" content="Compare your protocol's eligibility with competing trials, check a protocol against its registration, compare protocol versions, check redaction, and turn the schedule of assessments into a visit checklist. Runs on your Mac; documents never leave it.">
+<meta name="keywords" content="clinical operations, feasibility, eligibility criteria, protocol amendment comparison, protocol version compare, schedule of assessments, visit checklist, redaction check, competing trials near site, CRA tools, site feasibility, FDAAA results reporting">
+<link rel="canonical" href="https://www.trialcarta.com/clinical-ops/">
+
+<!-- Social previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trialcarta.com/clinical-ops/">
+<meta property="og:title" content="TrialCarta for clinical operations, study teams and sites">
+<meta property="og:description" content="Protocol, feasibility and site document work in minutes, on your own Mac: eligibility against competing trials, protocol versions, redaction, schedules of assessments and competing sites.">
+<meta property="og:site_name" content="TrialCarta">
+<meta property="og:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TrialCarta: clinical trial research in minutes, checked against the source">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/icon-512.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TrialCarta Pro for biotech finance",
+  "description": "Find drug developers that need capital before their next readout, listed and private, from public records.",
+  "url": "https://www.trialcarta.com/finance/",
+  "publisher": { "@type": "Organization", "name": "TrialCarta", "url": "https://www.trialcarta.com/", "logo": "https://www.trialcarta.com/assets/favicon/icon-512.png" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Where does the data come from?", "acceptedAnswer": { "@type": "Answer", "text": "Public sources only: public trial registries, company filings and the published literature, read fresh each time you run it. Every figure links to where it came from." } },
+    { "@type": "Question", "name": "Do our deal documents leave our office?", "acceptedAnswer": { "@type": "Answer", "text": "No. TrialCarta runs on your Mac, including the AI model. Only the public searches go out; your documents, questions and notes stay on the computer." } },
+    { "@type": "Question", "name": "Can TrialCarta use our internal data?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Point it at a folder and it reads your documents on your Mac, next to the public sources. For larger setups, we connect your internal sources and the licensed databases you already subscribe to during onboarding, on your machines. Nothing is uploaded to us." } },
+    { "@type": "Question", "name": "Where do the FDA decision dates come from?", "acceptedAnswer": { "@type": "Answer", "text": "From the companies' own public filings: TrialCarta finds the PDUFA date a filing states, quotes the sentence and links to the filing. Companies that don't state a date aren't covered, and FDA can act before or after the date." } },
+    { "@type": "Question", "name": "Is it investment advice?", "acceptedAnswer": { "@type": "Answer", "text": "No. It's a screening and research aid built on public data. Figures are approximate; check them against the filings before relying on them." } }
+  ]
+}
+</script>
+<meta name="author" content="TrialCarta">
+
+
+<!-- Theme switcher (color modes) -->
+<script src="../assets/js/theme-switcher.js"></script>
+
+<!-- Import Google font (Inter) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+<!-- Vendor styles -->
+<link rel="stylesheet" media="screen" href="../assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" media="screen" href="../assets/vendor/aos/dist/aos.css">
+
+<!-- Font icons -->
+<link rel="stylesheet" href="../assets/icons/around-icons.min.css">
+
+<!-- Theme styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="../assets/css/theme.min.css">
+
+<!-- Page loading styles -->
+<style>
+	.page-loading {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transition: all .4s .2s ease-in-out;
+		transition: all .4s .2s ease-in-out;
+		background-color: #fff;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9999;
+	}
+	[data-bs-theme="dark"] .page-loading {
+		background-color: #121519;
+	}
+	.page-loading.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-loading-inner {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-transition: opacity .2s ease-in-out;
+		transition: opacity .2s ease-in-out;
+		opacity: 0;
+	}
+	.page-loading.active > .page-loading-inner {
+		opacity: 1;
+	}
+	.page-loading-inner > span {
+		display: block;
+		font-family: "Inter", sans-serif;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #6f788b;
+	}
+	[data-bs-theme="dark"] .page-loading-inner > span {
+		color: #fff;
+		opacity: .6;
+	}
+	.page-spinner {
+		display: inline-block;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: .75rem;
+		vertical-align: text-bottom;
+		background-color: #d7dde2; 
+		border-radius: 50%;
+		opacity: 0;
+		-webkit-animation: spinner .75s linear infinite;
+		animation: spinner .75s linear infinite;
+	}
+	[data-bs-theme="dark"] .page-spinner {
+		background-color: rgba(255,255,255,.25);
+	}
+	@-webkit-keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	@keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+</style>
+
+<style>
+	/* Anchor links land below the fixed navbar. */
+	section[id] { scroll-margin-top: 84px; }
+
+	/* Brand palette: the TrialCarta app's teal instead of the theme's default green.
+	   Filled buttons stay deep teal in both modes (white text 5.5:1); outline buttons,
+	   links and icons use bright teal in dark mode (9.8:1 on the dark background). */
+	:root, [data-bs-theme=light] {
+		--ar-primary: #0F766E;
+		--ar-primary-rgb: 15, 118, 110;
+		--ar-primary-text-emphasis: #115E59;
+		--ar-primary-bg-subtle: #E6F4F2;
+		--ar-primary-border-subtle: #C9E7E3;
+		--ar-link-color: #0F766E;
+		--ar-link-color-rgb: 15, 118, 110;
+		--ar-link-hover-color: #115E59;
+		--ar-focus-ring-color: rgba(15, 118, 110, .25);
+	}
+	[data-bs-theme=dark] {
+		--ar-primary: #2DD4BF;
+		--ar-primary-rgb: 45, 212, 191;
+		--ar-primary-text-emphasis: #5EEAD4;
+		--ar-primary-bg-subtle: #0B2421;
+		--ar-primary-border-subtle: #134E4A;
+		--ar-link-color: #2DD4BF;
+		--ar-link-color-rgb: 45, 212, 191;
+		--ar-link-hover-color: #5EEAD4;
+		--ar-focus-ring-color: rgba(45, 212, 191, .25);
+	}
+	.btn-primary {
+		--ar-btn-color: #fff; --ar-btn-bg: #0F766E; --ar-btn-border-color: #0F766E;
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #115E59; --ar-btn-hover-border-color: #115E59;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #134E4A; --ar-btn-active-border-color: #134E4A;
+		--ar-btn-disabled-bg: #0F766E; --ar-btn-disabled-border-color: #0F766E;
+		--ar-btn-focus-shadow-rgb: 15, 118, 110;
+	}
+	.btn-outline-primary {
+		--ar-btn-color: var(--ar-primary); --ar-btn-border-color: var(--ar-primary);
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #0F766E; --ar-btn-hover-border-color: #0F766E;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #115E59; --ar-btn-active-border-color: #115E59;
+		--ar-btn-focus-shadow-rgb: var(--ar-primary-rgb);
+	}
+	/* Call-to-action band: same deep teal in both modes. */
+	.cta-band { background-color: #0F766E; }
+</style>
+
+<!-- Page loading scripts -->
+<script>
+	(function () {
+		window.onload = function () {
+			const preloader = document.querySelector('.page-loading')
+			preloader.classList.remove('active')
+			setTimeout(function () {
+				preloader.remove()
+			}, 1500)
+		}
+	})()
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>.navbar-nav .nav-link{white-space:nowrap}</style>
+</head>
+
+<body class="bg-secondary">
+	<div class="page-loading active"><div class="page-loading-inner"><div class="page-spinner"></div><span>Loading...</span></div></div>
+	<main class="page-wrapper">
+		<!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+		<header class="navbar navbar-expand-xl fixed-top">
+			<div class="container">
+
+				<!-- Navbar brand (Logo) -->
+				<a class="navbar-brand pe-sm-3" href="../">
+					<img src="../assets/favicon/favicon.svg" width="30" height="30" class="me-2 rounded-2" alt="">TrialCarta
+				</a>
+
+				<!-- Theme switcher -->
+				<div class="form-check form-switch mode-switch order-xl-2 me-3 me-xl-4 ms-auto" data-bs-toggle="mode">
+					<input class="form-check-input" type="checkbox" id="theme-mode">
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-sun fs-lg"></i>
+					</label>
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-moon fs-lg"></i>
+					</label>
+				</div>
+
+				<a class="btn btn-primary btn-sm fs-sm order-xl-3 d-none d-sm-inline-flex" href="../?interest=TrialCarta%20for%20study%20teams%20and%20sites&amp;from=clinical-ops#contact">
+					<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+					Request a demo
+				</a>
+
+				<!-- Mobile menu toggler (Hamburger) -->
+				<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar collapse (Main navigation) -->
+				<nav class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+						<li class="nav-item">
+							<a class="nav-link" href="../#how-it-works">How it works</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../finance/">Finance</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="./" aria-current="page">Clinical ops</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../security/">Security &amp; teams</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../examples/">Examples</a>
+						</li>
+					</ul>
+
+					<div class="d-sm-none p-3 mt-n3">
+						<a class="btn btn-primary w-100 mb-1" href="../?interest=TrialCarta%20for%20study%20teams%20and%20sites&amp;from=clinical-ops#contact">
+							<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+							Request a demo
+						</a>
+					</div>
+				</nav>
+
+			</div>
+		</header>
+
+		<section class="container pt-5 mt-5 pb-4">
+			<nav aria-label="breadcrumb" class="pt-4"><ol class="breadcrumb fs-sm"><li class="breadcrumb-item"><a href="../">TrialCarta</a></li><li class="breadcrumb-item active" aria-current="page">Clinical ops &amp; sites</li></ol></nav>
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-5">
+					<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-3">For clinical operations, study teams and sites</span>
+					<h1 class="display-5 pb-2">Protocol, feasibility and site work in minutes, kept on your Mac.</h1>
+					<p class="fs-lg">Compare your protocol with the trials competing for the same patients, check it against its registration, see what changed between versions, check redaction before documents go out, and turn the schedule of assessments into a visit checklist. The checks are done by rules, and the files never leave your computer.</p>
+					<div class="d-flex flex-column flex-sm-row gap-3">
+						<a class="btn btn-lg btn-primary" href="../?interest=TrialCarta%20for%20study%20teams%20and%20sites&amp;from=clinical-ops#contact"><i class="ai-calendar-check fs-xl me-2 ms-n1"></i>Request a demo</a>
+						<a class="btn btn-lg btn-outline-primary" href="../guides/pdf-redaction-check/">See a redaction check</a>
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<img class="d-block w-100 rounded-4 shadow-lg" src="../assets/img/trialcarta/protocol-offline.jpg" alt="TrialCarta with Internet Access off, comparing a confidential protocol's eligibility criteria with three competing phase 3 trials">
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-4">
+			<div class="d-flex flex-wrap justify-content-center gap-2">
+				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#feasibility">Feasibility and competition</a>
+				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#protocols">Protocol documents</a>
+				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#sites">Sites and patients</a>
+				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#reporting">Results reporting</a>
+			</div>
+		</section>
+
+		<section class="container py-5" id="feasibility">
+			<h2 class="h1 text-center pb-2">Feasibility and competition</h2>
+			<p class="fs-lg text-center mx-auto pb-4" style="max-width: 720px;">Who else is recruiting your patients, how their criteria compare with yours, and what happened to the trials that came before.</p>
+			<div class="row align-items-center g-4 g-lg-5 pb-5">
+				<div class="col-lg-6 order-lg-2">
+					<img class="d-block w-100 rounded-4 shadow bg-white" src="../assets/img/trialcarta/why-stopped.jpg" loading="lazy" alt="TrialCarta chart of why trials stopped, grouped by the reason sponsors registered">
+				</div>
+				<div class="col-lg-6 order-lg-1">
+					<h3 class="h2">Your protocol against the competition, offline</h3>
+					<p class="fs-lg">Attach a draft protocol, switch the internet off, and compare its eligibility criteria with the competing trials recruiting the same patients: age, stage, labs, prior treatments and exclusions, side by side.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>See which of your criteria narrow the patient pool the most</li>
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Learn from trials in your indication that stopped, grouped by the reason each sponsor registered: enrollment, efficacy, safety, business or funding</li>
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Compare up to six trials in one table, with the differences that matter</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="protocols">
+			<h2 class="h1 text-center pb-2">Protocol documents</h2>
+			<p class="fs-lg text-center mx-auto pb-4" style="max-width: 720px;">The document work that eats a CRA's or coordinator's week, done by rules rather than AI.</p>
+			<div class="row align-items-center g-4 g-lg-5 pb-5">
+				<div class="col-lg-6">
+					<a href="../assets/img/trialcarta/version-compare.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 480px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/version-compare.jpg" loading="lazy" alt="TrialCarta comparing version 3 and version 4 of a fictional protocol: eligibility, dosing, schedule, safety reporting and sample size changes, each with its section and pages"></a>
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Example with a fictional protocol. Click to enlarge.</p>
+				</div>
+				<div class="col-lg-6">
+					<h3 class="h2">Compare protocol versions</h3>
+					<p class="fs-lg">Drop in two versions of a protocol and see every change to eligibility, dosing, visits, safety reporting and sample size, with the section and page on both sides.</p>
+					<p class="mb-0">It compares the full text, so it also catches changes the summary of changes doesn't mention.</p>
+				</div>
+			</div>
+			<div class="row align-items-center g-4 g-lg-5 pb-5">
+				<div class="col-lg-6 order-lg-2">
+					<img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 480px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/protocol-check.jpg" loading="lazy" alt="TrialCarta checking a fictional protocol against its registry record: endpoint time frames, sample size, phase and arms that differ, each cited">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Example with a fictional sponsor, drug and registry record (Northwind Bio, NWB-204).</p>
+				</div>
+				<div class="col-lg-6 order-lg-1">
+					<h3 class="h2">Check a protocol against its registration</h3>
+					<p class="fs-lg">Attach a trial's protocol and TrialCarta lines up its endpoints, sample size, arms and phase with the ClinicalTrials.gov registration, listing every difference with both sources cited.</p>
+					<p class="mb-0">Check your own registration before it goes public, and hear when a saved trial's endpoints or enrollment change on the registry.</p>
+				</div>
+			</div>
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-6">
+					<a href="../assets/img/trialcarta/schedule-checklist.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 480px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/schedule-checklist.jpg" loading="lazy" alt="A per-visit checklist TrialCarta built from a protocol's schedule of assessments: efficacy, safety and treatment procedures for each visit, with footnote references"></a>
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Click to enlarge.</p>
+				</div>
+				<div class="col-lg-6">
+					<h3 class="h2">Schedule of assessments, as a checklist</h3>
+					<p class="fs-lg">TrialCarta rebuilds the schedule of assessments table from the protocol PDF, including sideways pages and clear scans, and turns it into a per-visit checklist with footnotes kept.</p>
+					<p class="mb-0">Save it as CSV for your visit tracker.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="sites">
+			<h2 class="h1 text-center pb-4">Sites and patients</h2>
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-hide fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Check redaction before you send</h3>
+							<p class="mb-3">Catches names, MRNs and dates of birth that are still readable: missed entirely, under a black box drawn over live text, struck through, legible in a scan, or sitting in a spreadsheet column. The report masks every value it finds.</p>
+							<a href="../assets/img/trialcarta/redaction-check.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 240px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/redaction-check.jpg" loading="lazy" alt="TrialCarta's redaction report on fake test documents: black boxes over live text, struck-through identifiers and readable scans, with every value masked"></a>
+							<p class="fs-xs text-body-secondary mt-2 mb-2">Example with made-up test documents.</p>
+							<a class="fs-sm" href="../guides/pdf-redaction-check/">How to check that a PDF is really redacted</a>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-map-pin fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Competing trials near a site</h3>
+							<p class="mb-3">Pick one of a trial's sites and a distance. TrialCarta lists the open trials for the same conditions nearby, same facility first, with sponsor, phase, ages, target enrollment and readout date.</p>
+							<a href="../assets/img/trialcarta/competing-trials.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 240px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/competing-trials.jpg" loading="lazy" alt="TrialCarta listing open MASH trials near a site in Los Angeles, with sponsor, phase, nearest site and distance, ages, enrollment and readout date"></a>
+							<p class="fs-xs text-body-secondary mt-2 mb-0">From ClinicalTrials.gov records.</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<i class="ai-user fs-1 text-primary d-block mb-3"></i>
+							<h3 class="h5">Patient pre-screen <span class="badge align-middle ms-1" style="background:#fdecc8;color:#8a5300;font-size:.75rem;">Preview</span></h3>
+							<p class="mb-3">Check a de-identified patient summary against selected trials, criterion by criterion, with the patient evidence quoted. Screening support; a qualified person confirms eligibility.</p>
+							<a href="../assets/img/trialcarta/patient-check.jpg" target="_blank" rel="noopener"><img class="d-block w-100 rounded-3 border" style="max-height: 240px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/patient-check.jpg" loading="lazy" alt="A TrialCarta patient pre-screen for a fictional patient: each eligibility criterion of a MASH trial with the patient evidence quoted and a status of Passes or Not enough information"></a>
+							<p class="fs-xs text-body-secondary mt-2 mb-0">Example with a fictional patient.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="reporting">
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-6">
+					<img class="d-block w-100 rounded-4 shadow bg-white" style="max-height: 480px; object-fit: cover; object-position: top;" src="../assets/img/trialcarta/results-check.jpg" loading="lazy" alt="TrialCarta results reporting for MASH trials: 144 had results due, 105 posted, 5 with a delay requested and 11 FDA-regulated trials with nothing posted">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">Trial names hidden for this page; in the app, each row links to its record.</p>
+				</div>
+				<div class="col-lg-6">
+					<h2 class="h2">Did they post their results?</h2>
+					<p class="fs-lg">FDAAA 801 expects results within a year of primary completion. TrialCarta checks every finished trial in a search: posted, in review, delay requested, or nothing at all.</p>
+					<p class="mb-0">For example: of 144 MASH trials whose results were due, 105 have posted them and 11 FDA-regulated trials show nothing, some for years. These are flags to review, computed from registry fields, not legal findings.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h4">Common questions</h2>
+				<h3 class="h6 mt-3">Do our protocols or patient documents leave the computer?</h3>
+				<p class="fs-sm">No. TrialCarta runs on your Mac, including the AI model. With Internet Access off, nothing goes out at all. <a href="../security/">How privacy works</a>.</p>
+				<h3 class="h6 mt-3">Is the comparison done by AI?</h3>
+				<p class="fs-sm">Protocol version comparison, redaction checks and the schedule of assessments are done by rules, so the same files give the same result. The AI model is used for questions and summaries, and its citations are checked against the records.</p>
+				<h3 class="h6 mt-3">Can the whole study team use it?</h3>
+				<p class="fs-sm mb-0">Yes. One Mac serves the team, and colleagues sign in from their browser on Windows, Mac or Linux. <a href="../security/#teams">How it works for teams</a>.</p>
+			</div>
+		</section>
+
+		<section class="container pb-5 mb-4">
+			<div class="cta-band rounded-5 text-center px-4 py-5 mx-auto" style="max-width: 900px;" data-bs-theme="dark">
+				<h2 class="h2 text-white">See it on your own protocol</h2>
+				<p class="fs-lg text-white opacity-75 mx-auto" style="max-width: 600px;">We'll compare a protocol with its competition, check a redaction, and build a visit checklist, on your indication.</p>
+				<a class="btn btn-lg btn-light" href="../?interest=TrialCarta%20for%20study%20teams%20and%20sites&amp;from=clinical-ops#contact">Request a demo</a>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer pt-lg-5 pt-4 pb-5">
+		<div class="container pt-3 mt-md-2 mt-lg-3">
+			<div class="row gy-md-5 gy-4 mb-md-5 mb-4 pb-lg-2">
+				<div class="col-lg-4">
+					<a class="navbar-brand d-inline-flex align-items-center mb-lg-4 mb-3" href="../">
+						<img src="../assets/favicon/favicon.svg" width="28" height="28" class="me-2 rounded-2" alt=""><span class="text-nav">TrialCarta</span>
+					</a>
+					<p class="mb-4 pb-lg-1 fs-xs text-body-secondary" style="max-width: 320px;">Diligence any asset's landscape in minutes, checked against the source. Private: it runs on your own Mac or your team's server.</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row row-cols-sm-3 row-cols-1">
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#how-it-works">How it works</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../finance/">Biotech finance</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../clinical-ops/">Clinical ops &amp; sites</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../security/">Security &amp; teams</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#contact">Request a demo</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../examples/">Examples</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../insights/mash-trial-landscape/">MASH trial landscape</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/pdf-redaction-check/">Check PDF redaction</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/check-memo-trial-dates/">Check a memo's trial dates</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav flex-nowrap mb-3">
+									<a class="nav-link fw-normal p-0 mt-n1" href="../#contact"><i class="ai-mail lead text-primary me-2"></i>Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav fs-sm text-body-secondary">&copy;&nbsp;<span id="spanYear"></span>&nbsp;TrialCarta. All rights reserved.</div>
+		</div>
+	</footer>
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+    	<svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    		<circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    	</svg>
+    	<i class="ai-arrow-up"></i>
+    </a>
+
+
+
+    <script src="../assets/js/theme.min.js"></script>
+    <script src="../assets/js/scroll-depth.js"></script>
+    <script>$('#spanYear').html(new Date().getFullYear());</script>
+  </body>
+  </html>

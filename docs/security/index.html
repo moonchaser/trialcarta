@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+<!-- Google tag (gtag.js): loaded only on the live site, so local previews aren't counted -->
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	if (/(^|\.)trialcarta\.com$/.test(location.hostname)) {
+		var ga = document.createElement('script');
+		ga.async = true;
+		ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-05L6VGT0W0';
+		document.head.appendChild(ga);
+		gtag('js', new Date());
+		gtag('config', 'G-05L6VGT0W0');
+	}
+</script>
+
+
+<meta charset="utf-8">
+
+<!-- Viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover">
+
+<!-- SEO meta tags -->
+<title>Security, privacy and team setup | TrialCarta</title>
+<meta name="description" content="How TrialCarta keeps confidential work on your computer: local AI models, an Internet Access switch, what does and doesn't leave the Mac, and how one Mac serves a team in Windows, Mac and Linux browsers.">
+<meta name="keywords" content="private AI, local AI, on-premise AI, data privacy, confidential documents, offline AI, security review, team server, Windows browser, Linux browser, Apple silicon">
+<link rel="canonical" href="https://www.trialcarta.com/security/">
+
+<!-- Social previews -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trialcarta.com/security/">
+<meta property="og:title" content="TrialCarta security, privacy and team setup">
+<meta property="og:description" content="Local AI on your Mac, an Internet Access switch, and one Mac serving your team's browsers: what leaves the computer and what never does.">
+<meta property="og:site_name" content="TrialCarta">
+<meta property="og:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="TrialCarta: clinical trial research in minutes, checked against the source">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.trialcarta.com/assets/img/trialcarta/og-card.jpg">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/icon-512.png">
+<link rel="apple-touch-icon" href="../assets/favicon/apple-touch-icon.png">
+
+<!-- Structured data for search engines -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "TrialCarta Pro for biotech finance",
+  "description": "Find drug developers that need capital before their next readout, listed and private, from public records.",
+  "url": "https://www.trialcarta.com/finance/",
+  "publisher": { "@type": "Organization", "name": "TrialCarta", "url": "https://www.trialcarta.com/", "logo": "https://www.trialcarta.com/assets/favicon/icon-512.png" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Where does the data come from?", "acceptedAnswer": { "@type": "Answer", "text": "Public sources only: public trial registries, company filings and the published literature, read fresh each time you run it. Every figure links to where it came from." } },
+    { "@type": "Question", "name": "Do our deal documents leave our office?", "acceptedAnswer": { "@type": "Answer", "text": "No. TrialCarta runs on your Mac, including the AI model. Only the public searches go out; your documents, questions and notes stay on the computer." } },
+    { "@type": "Question", "name": "Can TrialCarta use our internal data?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Point it at a folder and it reads your documents on your Mac, next to the public sources. For larger setups, we connect your internal sources and the licensed databases you already subscribe to during onboarding, on your machines. Nothing is uploaded to us." } },
+    { "@type": "Question", "name": "Where do the FDA decision dates come from?", "acceptedAnswer": { "@type": "Answer", "text": "From the companies' own public filings: TrialCarta finds the PDUFA date a filing states, quotes the sentence and links to the filing. Companies that don't state a date aren't covered, and FDA can act before or after the date." } },
+    { "@type": "Question", "name": "Is it investment advice?", "acceptedAnswer": { "@type": "Answer", "text": "No. It's a screening and research aid built on public data. Figures are approximate; check them against the filings before relying on them." } }
+  ]
+}
+</script>
+<meta name="author" content="TrialCarta">
+
+
+<!-- Theme switcher (color modes) -->
+<script src="../assets/js/theme-switcher.js"></script>
+
+<!-- Import Google font (Inter) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet" id="google-font">
+
+<!-- Vendor styles -->
+<link rel="stylesheet" media="screen" href="../assets/vendor/swiper/swiper-bundle.min.css">
+<link rel="stylesheet" media="screen" href="../assets/vendor/aos/dist/aos.css">
+
+<!-- Font icons -->
+<link rel="stylesheet" href="../assets/icons/around-icons.min.css">
+
+<!-- Theme styles + Bootstrap -->
+<link rel="stylesheet" media="screen" href="../assets/css/theme.min.css">
+
+<!-- Page loading styles -->
+<style>
+	.page-loading {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		-webkit-transition: all .4s .2s ease-in-out;
+		transition: all .4s .2s ease-in-out;
+		background-color: #fff;
+		opacity: 0;
+		visibility: hidden;
+		z-index: 9999;
+	}
+	[data-bs-theme="dark"] .page-loading {
+		background-color: #121519;
+	}
+	.page-loading.active {
+		opacity: 1;
+		visibility: visible;
+	}
+	.page-loading-inner {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
+		-webkit-transition: opacity .2s ease-in-out;
+		transition: opacity .2s ease-in-out;
+		opacity: 0;
+	}
+	.page-loading.active > .page-loading-inner {
+		opacity: 1;
+	}
+	.page-loading-inner > span {
+		display: block;
+		font-family: "Inter", sans-serif;
+		font-size: 1rem;
+		font-weight: normal;
+		color: #6f788b;
+	}
+	[data-bs-theme="dark"] .page-loading-inner > span {
+		color: #fff;
+		opacity: .6;
+	}
+	.page-spinner {
+		display: inline-block;
+		width: 2.75rem;
+		height: 2.75rem;
+		margin-bottom: .75rem;
+		vertical-align: text-bottom;
+		background-color: #d7dde2; 
+		border-radius: 50%;
+		opacity: 0;
+		-webkit-animation: spinner .75s linear infinite;
+		animation: spinner .75s linear infinite;
+	}
+	[data-bs-theme="dark"] .page-spinner {
+		background-color: rgba(255,255,255,.25);
+	}
+	@-webkit-keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+	@keyframes spinner {
+		0% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		50% {
+			opacity: 1;
+			-webkit-transform: none;
+			transform: none;
+		}
+	}
+</style>
+
+<style>
+	/* Anchor links land below the fixed navbar. */
+	section[id] { scroll-margin-top: 84px; }
+
+	/* Brand palette: the TrialCarta app's teal instead of the theme's default green.
+	   Filled buttons stay deep teal in both modes (white text 5.5:1); outline buttons,
+	   links and icons use bright teal in dark mode (9.8:1 on the dark background). */
+	:root, [data-bs-theme=light] {
+		--ar-primary: #0F766E;
+		--ar-primary-rgb: 15, 118, 110;
+		--ar-primary-text-emphasis: #115E59;
+		--ar-primary-bg-subtle: #E6F4F2;
+		--ar-primary-border-subtle: #C9E7E3;
+		--ar-link-color: #0F766E;
+		--ar-link-color-rgb: 15, 118, 110;
+		--ar-link-hover-color: #115E59;
+		--ar-focus-ring-color: rgba(15, 118, 110, .25);
+	}
+	[data-bs-theme=dark] {
+		--ar-primary: #2DD4BF;
+		--ar-primary-rgb: 45, 212, 191;
+		--ar-primary-text-emphasis: #5EEAD4;
+		--ar-primary-bg-subtle: #0B2421;
+		--ar-primary-border-subtle: #134E4A;
+		--ar-link-color: #2DD4BF;
+		--ar-link-color-rgb: 45, 212, 191;
+		--ar-link-hover-color: #5EEAD4;
+		--ar-focus-ring-color: rgba(45, 212, 191, .25);
+	}
+	.btn-primary {
+		--ar-btn-color: #fff; --ar-btn-bg: #0F766E; --ar-btn-border-color: #0F766E;
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #115E59; --ar-btn-hover-border-color: #115E59;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #134E4A; --ar-btn-active-border-color: #134E4A;
+		--ar-btn-disabled-bg: #0F766E; --ar-btn-disabled-border-color: #0F766E;
+		--ar-btn-focus-shadow-rgb: 15, 118, 110;
+	}
+	.btn-outline-primary {
+		--ar-btn-color: var(--ar-primary); --ar-btn-border-color: var(--ar-primary);
+		--ar-btn-hover-color: #fff; --ar-btn-hover-bg: #0F766E; --ar-btn-hover-border-color: #0F766E;
+		--ar-btn-active-color: #fff; --ar-btn-active-bg: #115E59; --ar-btn-active-border-color: #115E59;
+		--ar-btn-focus-shadow-rgb: var(--ar-primary-rgb);
+	}
+	/* Call-to-action band: same deep teal in both modes. */
+	.cta-band { background-color: #0F766E; }
+</style>
+
+<!-- Page loading scripts -->
+<script>
+	(function () {
+		window.onload = function () {
+			const preloader = document.querySelector('.page-loading')
+			preloader.classList.remove('active')
+			setTimeout(function () {
+				preloader.remove()
+			}, 1500)
+		}
+	})()
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style>.navbar-nav .nav-link{white-space:nowrap}</style>
+</head>
+
+<body class="bg-secondary">
+	<div class="page-loading active"><div class="page-loading-inner"><div class="page-spinner"></div><span>Loading...</span></div></div>
+	<main class="page-wrapper">
+		<!-- Navbar. Remove 'fixed-top' class to make the navigation bar scrollable with the page -->
+		<header class="navbar navbar-expand-xl fixed-top">
+			<div class="container">
+
+				<!-- Navbar brand (Logo) -->
+				<a class="navbar-brand pe-sm-3" href="../">
+					<img src="../assets/favicon/favicon.svg" width="30" height="30" class="me-2 rounded-2" alt="">TrialCarta
+				</a>
+
+				<!-- Theme switcher -->
+				<div class="form-check form-switch mode-switch order-xl-2 me-3 me-xl-4 ms-auto" data-bs-toggle="mode">
+					<input class="form-check-input" type="checkbox" id="theme-mode">
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-sun fs-lg"></i>
+					</label>
+					<label class="form-check-label" for="theme-mode">
+						<i class="ai-moon fs-lg"></i>
+					</label>
+				</div>
+
+				<a class="btn btn-primary btn-sm fs-sm order-xl-3 d-none d-sm-inline-flex" href="../?interest=A%20team%20server&amp;from=security#contact">
+					<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+					Request a demo
+				</a>
+
+				<!-- Mobile menu toggler (Hamburger) -->
+				<button class="navbar-toggler ms-sm-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar collapse (Main navigation) -->
+				<nav class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav navbar-nav-scroll me-auto" style="--ar-scroll-height: 520px;">
+						<li class="nav-item">
+							<a class="nav-link" href="../#how-it-works">How it works</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../finance/">Finance</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../clinical-ops/">Clinical ops</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="./" aria-current="page">Security &amp; teams</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="../examples/">Examples</a>
+						</li>
+					</ul>
+
+					<div class="d-sm-none p-3 mt-n3">
+						<a class="btn btn-primary w-100 mb-1" href="../?interest=A%20team%20server&amp;from=security#contact">
+							<i class="ai-calendar-check fs-xl me-2 ms-n1"></i>
+							Request a demo
+						</a>
+					</div>
+				</nav>
+
+			</div>
+		</header>
+
+		<section class="container pt-5 mt-5 pb-4">
+			<nav aria-label="breadcrumb" class="pt-4"><ol class="breadcrumb fs-sm"><li class="breadcrumb-item"><a href="../">TrialCarta</a></li><li class="breadcrumb-item active" aria-current="page">Security &amp; teams</li></ol></nav>
+			<div class="mx-auto text-center" style="max-width: 820px;">
+				<span class="badge fs-sm bg-primary bg-opacity-10 text-primary mb-3">For IT, security and team leads</span>
+				<h1 class="display-5 pb-2">Confidential work stays on your computer.</h1>
+				<p class="fs-lg">TrialCarta is an app on your Mac, not a website. The AI model runs there too, so a protocol, a data-room document or a client brief is never uploaded anywhere. For a team, one Mac serves everyone's browser, and documents never leave your network.</p>
+				<div class="d-flex flex-wrap justify-content-center gap-2 pt-2">
+					<a class="btn btn-sm btn-outline-primary rounded-pill" href="#data">What leaves the Mac</a>
+					<a class="btn btn-sm btn-outline-primary rounded-pill" href="#offline">Internet Access</a>
+					<a class="btn btn-sm btn-outline-primary rounded-pill" href="#models">Local models</a>
+					<a class="btn btn-sm btn-outline-primary rounded-pill" href="#teams">Teams</a>
+					<a class="btn btn-sm btn-outline-primary rounded-pill" href="#requirements">Requirements</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="container py-5" id="data">
+			<h2 class="h1 text-center pb-4">What leaves the Mac, and what never does</h2>
+			<div class="row row-cols-1 row-cols-md-2 g-4">
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<h3 class="h5"><i class="ai-search text-primary me-2"></i>Goes out, only when you search</h3>
+							<ul class="mb-0">
+								<li class="pb-2">The search terms you type, to the public sources: ClinicalTrials.gov, PubMed, openFDA, SEC EDGAR and FDA's Orange Book.</li>
+								<li class="pb-2">A target's or program's name to Crossref, to find congress abstract titles (TrialCarta Pro).</li>
+								<li class="pb-2">A request to a company's own investor site, only when you click Load News on that company.</li>
+								<li>Model downloads, when you choose a model.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card border-0 h-100 rounded-5">
+						<div class="card-body">
+							<h3 class="h5"><i class="ai-lock-closed text-primary me-2"></i>Never leaves</h3>
+							<ul class="mb-0">
+								<li class="pb-2">Your documents and linked folders.</li>
+								<li class="pb-2">Your questions and the answers.</li>
+								<li class="pb-2">Notes, short lists, projects and chats.</li>
+								<li>Anything about who is using it. There's no cloud account, and no analytics in the app.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p class="fs-sm text-body-secondary text-center pt-3 mb-0">Searches go straight from the Mac to the public source. They don't pass through us.</p>
+		</section>
+
+		<section class="container pb-5" id="offline">
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-6">
+					<h2 class="h2">One switch turns the internet off</h2>
+					<p class="fs-lg">Turn Internet Access off and TrialCarta stops searching, downloading and opening links. The model server and the document helpers run in a macOS sandbox that can only reach the Mac itself, so this is enforced by the operating system, not a promise.</p>
+					<ul class="list-unstyled mb-0">
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>Work on a confidential protocol or data-room document with nothing going out</li>
+						<li class="d-flex pt-1 mt-2"><i class="ai-check-alt text-primary fs-4 mt-n1 me-2"></i>On a team server, switch searches off for everyone, or just for one confidential project</li>
+					</ul>
+				</div>
+				<div class="col-lg-6">
+					<img class="d-block w-100 rounded-4 shadow" src="../assets/img/trialcarta/protocol-offline.jpg" loading="lazy" alt="TrialCarta with Internet Access off, comparing a confidential protocol's eligibility criteria with three competing phase 3 trials">
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="models">
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col"><div class="card border-0 h-100 rounded-5"><div class="card-body">
+					<i class="ai-chip text-primary fs-2 d-block mb-3"></i>
+					<h3 class="h5">Open models, running locally</h3>
+					<p class="mb-0">No cloud AI service sees your questions or files, so there's no AI vendor to approve. Works with 16 GB of memory; with 32 GB it uses a larger model for the best answers.</p>
+				</div></div></div>
+				<div class="col"><div class="card border-0 h-100 rounded-5"><div class="card-body">
+					<i class="ai-folder text-primary fs-2 d-block mb-3"></i>
+					<h3 class="h5">Files on your Mac</h3>
+					<p class="mb-0">Projects, chats and notes are files on the computer. Deleting a project deletes its data.</p>
+				</div></div></div>
+				<div class="col"><div class="card border-0 h-100 rounded-5"><div class="card-body">
+					<i class="ai-dollar text-primary fs-2 d-block mb-3"></i>
+					<h3 class="h5">Nothing metered</h3>
+					<p class="mb-0">No usage limits or per-query costs. A yearly license, checked on the Mac without calling home.</p>
+				</div></div></div>
+			</div>
+		</section>
+
+		<section class="container py-5" id="teams">
+			<div class="row align-items-center g-4 g-lg-5">
+				<div class="col-lg-5">
+					<h2 class="h1">For teams: one Mac, everyone's browser.</h2>
+					<p class="fs-lg">Install TrialCarta on one Mac and turn on Share with my team. Colleagues on Windows, Mac or Linux sign in from Chrome, Edge, Safari or Firefox, with nothing to install on their computers.</p>
+					<ul class="list-unstyled mb-4">
+						<li class="d-flex pb-3"><i class="ai-user-group text-primary fs-3 me-3"></i><span><strong>Accounts by invitation.</strong> An administrator invites each person and they set their own password. Chats are private to whoever asked.</span></li>
+						<li class="d-flex pb-3"><i class="ai-folder text-primary fs-3 me-3"></i><span><strong>Shared projects.</strong> One per study or client, with its documents and saved searches, open to the people you choose.</span></li>
+						<li class="d-flex pb-3"><i class="ai-wifi-off text-primary fs-3 me-3"></i><span><strong>Internet searches under your control.</strong> Turn public searches off for the whole team, or just for a confidential project.</span></li>
+						<li class="d-flex pb-3"><i class="ai-server text-primary fs-3 me-3"></i><span><strong>Everything stays on that Mac.</strong> Documents, questions and answers never leave it, and the AI model runs there for everyone. Add your company's certificate and colleagues connect over HTTPS.</span></li>
+						<li class="d-flex pb-3"><i class="ai-list text-primary fs-3 me-3"></i><span><strong>An activity log for administrators.</strong> Sign-ins, uploads, deletions, questions and admin changes are recorded with who and when; the text of questions is not.</span></li>
+						<li class="d-flex"><i class="ai-user-check text-primary fs-3 me-3"></i><span><strong>Priced per person.</strong> A yearly license for the number of people on your team.</span></li>
+					</ul>
+					<a class="btn btn-primary" href="../?interest=A%20team%20server&amp;from=security#contact">Ask about a team setup</a>
+				</div>
+				<div class="col-lg-7">
+					<img class="d-block w-100 rounded-4 shadow" src="../assets/img/trialcarta/team-sharing.jpg" loading="lazy" alt="TrialCarta's Team screen: Share with my team turned on, the addresses colleagues open in their browser, the model they share, and Administration">
+					<p class="fs-sm text-body-secondary mt-2 mb-0">The Team screen in TrialCarta, with example addresses.</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5" id="requirements">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h2 pb-2">Requirements</h2>
+				<div class="table-responsive">
+					<table class="table fs-sm mb-0">
+						<tbody>
+							<tr><th scope="row" style="width: 34%;">The Mac running TrialCarta</th><td>Apple silicon (M1 or later), macOS 14 or later, 16 GB of memory (32 GB for the larger model)</td></tr>
+							<tr><th scope="row">Team members</th><td>Chrome, Edge, Safari or Firefox on Windows, Mac or Linux; nothing to install</td></tr>
+							<tr><th scope="row">Network</th><td>Your own network; colleagues reach the Mac by its address. Internet only for public searches and model downloads, and none with Internet Access off</td></tr>
+							<tr><th scope="row">HTTPS</th><td>Optional, with a certificate your IT issues for the Mac (.p12 or .pfx)</td></tr>
+							<tr><th scope="row">Accounts</th><td>Created on that Mac by an administrator; no cloud identity service</td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+
+		<section class="container pb-5">
+			<div class="mx-auto" style="max-width: 860px;">
+				<h2 class="h4">Questions from IT and security reviews</h2>
+				<h3 class="h6 mt-3">Is any of our data sent to TrialCarta?</h3>
+				<p class="fs-sm">No. There's no TrialCarta cloud service in the loop. Searches go straight from your Mac to the public source, and everything else stays on the Mac.</p>
+				<h3 class="h6 mt-3">Which AI model does it use, and where does it run?</h3>
+				<p class="fs-sm">Open-weight models that run on the Mac itself. You choose and download them in the app; no cloud AI provider is used.</p>
+				<h3 class="h6 mt-3">Can we run it with no internet at all?</h3>
+				<p class="fs-sm">Yes, once a model is downloaded. Questions about your own documents work offline; public searches need the internet.</p>
+				<h3 class="h6 mt-3">Do the AI's answers get checked?</h3>
+				<p class="fs-sm">Every trial ID, PubMed ID and file name an answer cites is checked against the records retrieved, and anything not found is flagged. Counts, charts, cash and runway come from fixed rules, not the model.</p>
+				<h3 class="h6 mt-3">Do you have a Windows version?</h3>
+				<p class="fs-sm mb-0">Windows users use TrialCarta in their browser, through a team Mac on your network. <a href="../?interest=A%20team%20server&amp;from=security#contact">Ask us</a> about your setup.</p>
+			</div>
+		</section>
+
+		<section class="container pb-5 mb-4">
+			<div class="cta-band rounded-5 text-center px-4 py-5 mx-auto" style="max-width: 900px;" data-bs-theme="dark">
+				<h2 class="h2 text-white">Planning a security review?</h2>
+				<p class="fs-lg text-white opacity-75 mx-auto" style="max-width: 600px;">We'll walk your IT team through what runs where, the Internet Access switch, and a team setup on one of your Macs.</p>
+				<a class="btn btn-lg btn-light" href="../?interest=A%20team%20server&amp;from=security#contact">Talk to us</a>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer pt-lg-5 pt-4 pb-5">
+		<div class="container pt-3 mt-md-2 mt-lg-3">
+			<div class="row gy-md-5 gy-4 mb-md-5 mb-4 pb-lg-2">
+				<div class="col-lg-4">
+					<a class="navbar-brand d-inline-flex align-items-center mb-lg-4 mb-3" href="../">
+						<img src="../assets/favicon/favicon.svg" width="28" height="28" class="me-2 rounded-2" alt=""><span class="text-nav">TrialCarta</span>
+					</a>
+					<p class="mb-4 pb-lg-1 fs-xs text-body-secondary" style="max-width: 320px;">Diligence any asset's landscape in minutes, checked against the source. Private: it runs on your own Mac or your team's server.</p>
+				</div>
+				<div class="col-lg-8">
+					<div class="row row-cols-sm-3 row-cols-1">
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#how-it-works">How it works</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../finance/">Biotech finance</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../clinical-ops/">Clinical ops &amp; sites</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../security/">Security &amp; teams</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../#contact">Request a demo</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../examples/">Examples</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../insights/mash-trial-landscape/">MASH trial landscape</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/pdf-redaction-check/">Check PDF redaction</a></li>
+								<li class="nav-item mb-2"><a class="nav-link p-0" href="../guides/check-memo-trial-dates/">Check a memo's trial dates</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<ul class="nav flex-column mb-0">
+								<li class="nav flex-nowrap mb-3">
+									<a class="nav-link fw-normal p-0 mt-n1" href="../#contact"><i class="ai-mail lead text-primary me-2"></i>Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav fs-sm text-body-secondary">&copy;&nbsp;<span id="spanYear"></span>&nbsp;TrialCarta. All rights reserved.</div>
+		</div>
+	</footer>
+
+    <!-- Back to top button -->
+    <a class="btn-scroll-top" href="#top" data-scroll aria-label="Scroll back to top">
+    	<svg viewBox="0 0 40 40" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    		<circle cx="20" cy="20" r="19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-miterlimit="10"></circle>
+    	</svg>
+    	<i class="ai-arrow-up"></i>
+    </a>
+
+
+
+    <script src="../assets/js/theme.min.js"></script>
+    <script src="../assets/js/scroll-depth.js"></script>
+    <script>$('#spanYear').html(new Date().getFullYear());</script>
+  </body>
+  </html>

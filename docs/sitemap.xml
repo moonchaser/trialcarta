@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.trialcarta.com/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.trialcarta.com/insights/mash-trial-landscape/</loc>
@@ -18,6 +18,18 @@
   </url>
   <url>
     <loc>https://www.trialcarta.com/finance/</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.trialcarta.com/clinical-ops/</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.trialcarta.com/security/</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.trialcarta.com/examples/</loc>
+    <lastmod>2026-11-24</lastmod>
   </url>
 </urlset>
