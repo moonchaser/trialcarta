@@ -240,6 +240,25 @@
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>.navbar-nav .nav-link{white-space:nowrap}</style>
+<style>
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.25rem;position:relative}
+.flow-step{position:relative;display:flex;flex-direction:column;border-radius:1.25rem;background:var(--ar-body-bg);box-shadow:0 .25rem 1.25rem rgba(0,0,0,.06);border:1px solid var(--ar-border-color)}
+.flow-step:not(:last-child)::after{content:"\f10e";font-family:around-icons;position:absolute;right:-1.75rem;top:4.1rem;font-size:1.25rem;color:var(--ar-primary)}
+.flow-head{padding:1.1rem 1.25rem .9rem;border-bottom:1px solid var(--ar-border-color)}
+.flow-count{font-size:1.6rem;font-weight:700;line-height:1.1;color:var(--ar-heading-color)}
+.flow-unit{font-size:.8rem;color:var(--ar-secondary-color);text-transform:uppercase;letter-spacing:.04em}
+.flow-body{padding:1rem 1.25rem;flex:1;font-size:.9rem}
+.flow-body .lbl{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ar-secondary-color);margin-bottom:.3rem}
+.flow-tc{padding:1rem 1.25rem;border-radius:0 0 calc(1.25rem - 1px) calc(1.25rem - 1px);background:rgba(var(--ar-primary-rgb),.08);font-size:.9rem}
+.flow-tc .lbl{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--ar-primary);margin-bottom:.3rem}
+.flow-step.private .flow-tc{background:rgba(var(--ar-primary-rgb),.16)}
+.flow-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2.25rem;margin-top:1rem;font-size:.8rem;text-align:center}
+.flow-bar span{border-radius:2rem;padding:.35rem .75rem;border:1px dashed var(--ar-border-color);color:var(--ar-secondary-color)}
+.flow-bar .public{grid-column:1 / span 2;border-style:solid;border-color:rgba(var(--ar-primary-rgb),.45);color:var(--ar-primary)}
+.flow-bar .nda{grid-column:3 / span 2;border-style:solid;border-color:var(--ar-heading-color);color:var(--ar-heading-color)}
+@media (max-width:991.98px){.flow,.flow-bar{grid-template-columns:1fr;gap:2rem}.flow-step:not(:last-child)::after{content:"\f10c";right:auto;left:50%;top:auto;bottom:-1.75rem;transform:translateX(-50%)}.flow-bar{display:none}.flow .flow-step .phase{display:inline-block}}
+.flow-step .phase{display:none;font-size:.72rem;font-weight:600;border-radius:1rem;padding:.1rem .6rem;margin-top:.4rem;border:1px solid var(--ar-border-color);color:var(--ar-secondary-color)}
+</style>
 </head>
 
 <body class="bg-secondary">
@@ -327,12 +346,42 @@
 
 		<section class="container pb-2">
 			<nav class="d-flex flex-wrap justify-content-center gap-2" aria-label="On this page">
+				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#workflow">Where it fits</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#find">Find</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#diligence">Diligence</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#deals">Deals</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#trust">Why rely on it</a>
 				<a class="btn btn-sm btn-outline-primary rounded-pill" href="#pricing">Pricing</a>
 			</nav>
+		</section>
+
+		<section class="container py-5" id="workflow">
+			<h2 class="h1 text-center pb-2">Where it fits in your diligence</h2>
+			<p class="fs-lg text-center mx-auto pb-4" style="max-width: 760px;">From every trial on the registry to the investment committee. TrialCarta does the public-data grind across hundreds of companies, then works next to your confidential material once you're inside a deal.</p>
+			<div class="flow">
+				<div class="flow-step">
+					<div class="flow-head"><div class="flow-count">2,300</div><div class="flow-unit">trials reading out in 6–24 months</div><span class="phase">Public data</span></div>
+					<div class="flow-body"><div class="lbl">The work</div>Every industry phase 2 and 3 trial with a readout coming, matched to its sponsor: about 1,000 sponsors.</div>
+					<div class="flow-tc"><div class="lbl">TrialCarta</div>Pulls the registry, matches sponsors to SEC filers, and reads each one's cash, burn and runway. Every week, in minutes.</div>
+				</div>
+				<div class="flow-step">
+					<div class="flow-head"><div class="flow-count">140</div><div class="flow-unit">listed drug developers</div><span class="phase">Public data</span></div>
+					<div class="flow-body"><div class="lbl">The work</div>Rank them, pick a short list, and know each one's readouts, cash, holders, insider trades and news.</div>
+					<div class="flow-tc"><div class="lbl">TrialCarta</div>The Financing Screen ranks them by rule, <a href="backtest/">tested on history</a>. Cards, landscapes, Buyer Fit, alerts, and cited briefs.</div>
+				</div>
+				<div class="flow-step private">
+					<div class="flow-head"><div class="flow-count">3–5</div><div class="flow-unit">data rooms</div><span class="phase">Under NDA</span></div>
+					<div class="flow-body"><div class="lbl">The work</div>Study reports, FDA correspondence, the unredacted license agreement, expert calls and your licensed databases.</div>
+					<div class="flow-tc"><div class="lbl">TrialCarta, offline</div>Reads data-room documents on your own Mac, with the internet off: protocol against registration, versions compared, questions answered with page citations.</div>
+				</div>
+				<div class="flow-step private">
+					<div class="flow-head"><div class="flow-count">1</div><div class="flow-unit">investment committee</div><span class="phase">Your call</span></div>
+					<div class="flow-body"><div class="lbl">The work</div>Your revenue model, probability of success, valuation and the memo. Your judgment, your model.</div>
+					<div class="flow-tc"><div class="lbl">TrialCarta</div>Comparable deals, deal terms quoted from filings, editable PowerPoint and Excel, and a check that the memo's dates still hold.</div>
+				</div>
+			</div>
+			<div class="flow-bar" aria-hidden="true"><span class="public">Public registries, SEC filings and the literature</span><span class="nda">Confidential: stays on your computer</span></div>
+			<p class="fs-sm text-body-secondary text-center mt-4 mb-0">Counts from a live screen run in November 2026. TrialCarta doesn't value assets or replace your licensed databases, expert calls or model: it's the research aid around them.</p>
 		</section>
 
 		<section class="container py-5" id="find">
